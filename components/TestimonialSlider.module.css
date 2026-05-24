@@ -1,0 +1,109 @@
+.section {
+  padding: 5rem 0;
+  background: var(--white);
+}
+
+.slider {
+  max-width: 800px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.track {
+  position: relative;
+  min-height: 220px;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+  pointer-events: none;
+}
+
+.slide.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--green-900);
+  margin-bottom: 2rem;
+}
+
+.author {
+  display: block;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--charcoal);
+}
+
+.role {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--slate);
+  margin-top: 0.25rem;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.controls > button:first-child,
+.controls > button:last-child {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--green-200, #d4e5db);
+  background: var(--green-50);
+  color: var(--green-800);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition:
+    background var(--transition),
+    border-color var(--transition);
+}
+
+.controls > button:hover {
+  background: var(--green-800);
+  border-color: var(--green-800);
+  color: var(--white);
+}
+
+.dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.dots button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: var(--cream-dark);
+  cursor: pointer;
+  padding: 0;
+  transition:
+    transform var(--transition),
+    background var(--transition);
+}
+
+.dotActive,
+.dots button:hover {
+  background: var(--green-700);
+  transform: scale(1.2);
+}
