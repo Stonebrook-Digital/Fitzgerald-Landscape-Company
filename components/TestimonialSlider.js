@@ -53,24 +53,27 @@ export default function TestimonialSlider({ items }) {
           eyebrow="Reviews"
           title="Trusted by Brooklyn Homeowners"
           description="Real feedback from neighbors who've worked with our crew."
+          align="center"
         />
 
-        <a
-          href={googleReviews.href}
-          className={styles.googleBadge}
-          aria-label={`${googleReviews.rating} stars from ${googleReviews.count} Google reviews`}
-        >
-          <GoogleIcon size={28} />
-          <div className={styles.badgeText}>
-            <span className={styles.badgeLabel}>
-              <strong>{googleReviews.rating}</strong> on Google
-            </span>
-            <StarRating rating={googleReviews.rating} size="sm" />
-            <span className={styles.badgeCount}>
-              Based on {googleReviews.count} reviews
-            </span>
-          </div>
-        </a>
+        <div className={styles.badgeWrap}>
+          <a
+            href={googleReviews.href}
+            className={styles.googleBadge}
+            aria-label={`${googleReviews.rating} stars from ${googleReviews.count} Google reviews`}
+          >
+            <GoogleIcon size={28} />
+            <div className={styles.badgeText}>
+              <span className={styles.badgeLabel}>
+                <strong>{googleReviews.rating}</strong> on Google
+              </span>
+              <StarRating rating={googleReviews.rating} size="sm" />
+              <span className={styles.badgeCount}>
+                Based on {googleReviews.count} reviews
+              </span>
+            </div>
+          </a>
+        </div>
 
         <div className={styles.slider}>
           <div className={styles.viewport}>

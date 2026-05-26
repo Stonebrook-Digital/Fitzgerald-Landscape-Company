@@ -7,14 +7,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+}
+
+.badgeWrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
 }
 
 .googleBadge {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin: 0 auto 2.5rem;
   padding: 1rem 1.5rem;
   background: var(--white);
   border: 1px solid var(--cream-dark);
