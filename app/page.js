@@ -2,38 +2,23 @@ import Image from "next/image";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
-import ServiceCard from "@/components/ServiceCard";
+import ServicesOverview from "@/components/ServicesOverview";
 import StatsBar from "@/components/StatsBar";
 import TestimonialSlider from "@/components/TestimonialSlider";
-import ProcessSteps from "@/components/ProcessSteps";
 import CTABand from "@/components/CTABand";
+import ScrollReveal from "@/components/ScrollReveal";
 import Button from "@/components/Button";
 import {
   heroImage,
-  lorem,
-  services,
+  heroPortrait,
+  headerQuote,
+  valueProposition,
+  pricing,
   testimonials,
   galleryItems,
+  cta,
 } from "@/lib/content";
 import styles from "./page.module.css";
-
-const features = [
-  {
-    icon: "◆",
-    title: "Lorem Excellence",
-    text: lorem.short,
-  },
-  {
-    icon: "◇",
-    title: "Ipsum Craft",
-    text: lorem.short,
-  },
-  {
-    icon: "○",
-    title: "Dolor Trust",
-    text: lorem.short,
-  },
-];
 
 export default function HomePage() {
   const previewImages = galleryItems.slice(0, 4);
@@ -41,129 +26,114 @@ export default function HomePage() {
   return (
     <>
       <PageHero
-        title="Lorem Ipsum Outdoor Living, Crafted to Perfection"
-        subtitle="Fitzgerald Landscape Co."
+        title="Outdoor Living, Crafted With Care"
+        subtitle={valueProposition.eyebrow}
         image={heroImage}
+        quote={headerQuote}
+        sideImage={heroPortrait}
         size="tall"
-        primaryCta={{ href: "/contact", label: "Request Lorem" }}
+        primaryCta={{ href: cta.primaryHref, label: cta.primaryLabel }}
         secondaryCta={{ href: "/gallery", label: "View Gallery" }}
       />
 
       <StatsBar />
 
-      <section className={styles.section}>
+      <ScrollReveal as="section" className={styles.section}>
         <div className="container">
-          <div className={styles.introSplit}>
-            <div className={styles.introImage}>
-              <Image
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
-                alt=""
-                fill
-                sizes="(max-width: 900px) 100vw, 50vw"
-              />
-              <div className={styles.introBadge}>
-                <strong>000+</strong>
-                <span>Lorem Projects</span>
-              </div>
-            </div>
-            <div className={styles.introText}>
-              <SectionHeading
-                eyebrow="About Lorem"
-                title={lorem.heading}
-                description={lorem.long}
-                align="left"
-              />
-              <p>{lorem.medium}</p>
-              <Button href="/about" variant="outline">
-                Lorem Our Story
-              </Button>
-            </div>
+          <div className={styles.valueProp}>
+            <SectionHeading
+              eyebrow={valueProposition.eyebrow}
+              title={valueProposition.title}
+              description={valueProposition.text}
+            />
           </div>
         </div>
-      </section>
+      </ScrollReveal>
 
-      <section className={styles.sectionAlt}>
+      <ScrollReveal as="section" className={styles.sectionAlt} id="services" delay={80}>
         <div className="container">
           <SectionHeading
             eyebrow="Services"
-            title="Lorem Ipsum Solutions"
-            description={lorem.medium}
+            title="Complete Landscape Care"
+            description="From year-round maintenance to seasonal installations—we handle every aspect of your outdoor space."
           />
-          <div className={styles.servicesGrid}>
-            {services.slice(0, 3).map((service) => (
-              <ServiceCard key={service.id} {...service} />
-            ))}
-          </div>
-          <div className={styles.centerCta}>
+          <ServicesOverview limitPerCategory={3} />
+          <ScrollReveal delay={200} className={styles.centerCta}>
             <Button href="/services" variant="primary">
-              All Services
+              View All Services
             </Button>
-          </div>
+          </ScrollReveal>
         </div>
-      </section>
+      </ScrollReveal>
 
-      <section className={styles.section}>
+      <ScrollReveal as="section" className={styles.section} delay={80}>
         <div className="container">
           <SectionHeading
-            eyebrow="Process"
-            title="Dolor Sit Amet Method"
-            description={lorem.medium}
+            eyebrow={pricing.eyebrow}
+            title={pricing.title}
+            description={pricing.description}
           />
-          <ProcessSteps />
-        </div>
-      </section>
-
-      <section className={styles.sectionAlt}>
-        <div className="container">
-          <SectionHeading
-            eyebrow="Why Lorem"
-            title="Consectetur Adipiscing Elit"
-            description={lorem.medium}
-          />
-          <div className={styles.features}>
-            {features.map((f) => (
-              <article key={f.title} className={styles.feature}>
-                <span className={styles.featureIcon} aria-hidden="true">
-                  {f.icon}
-                </span>
-                <h3>{f.title}</h3>
-                <p>{f.text}</p>
-              </article>
+          <ul className={styles.pricingList}>
+            {pricing.points.map((point, index) => (
+              <ScrollReveal
+                as="li"
+                key={point}
+                delay={120 + index * 100}
+                variant="up"
+              >
+                {point}
+              </ScrollReveal>
             ))}
-          </div>
+          </ul>
+          <ScrollReveal delay={280} className={styles.centerCta}>
+            <Button href={cta.primaryHref} variant="outline">
+              {cta.primaryLabel}
+            </Button>
+          </ScrollReveal>
         </div>
-      </section>
+      </ScrollReveal>
 
-      <section className={styles.section}>
+      <ScrollReveal as="section" className={styles.sectionAlt} delay={80}>
         <div className="container">
           <SectionHeading
             eyebrow="Portfolio"
-            title="Sit Amet Gallery"
-            description={lorem.medium}
+            title="Recent Work"
+            description="A glimpse at the patios, plantings, and properties we've brought to life."
           />
           <div className={styles.galleryPreview}>
-            {previewImages.map((item) => (
-              <Link
+            {previewImages.map((item, index) => (
+              <ScrollReveal
                 key={item.id}
-                href="/gallery"
-                className={styles.galleryItem}
+                delay={index * 90}
+                variant="scale"
+                className={styles.galleryReveal}
               >
-                <Image src={item.image} alt="" fill sizes="33vw" />
-                <span>{item.title}</span>
-              </Link>
+                <Link href="/gallery" className={styles.galleryItem}>
+                  <Image src={item.image} alt="" fill sizes="33vw" />
+                  <span>{item.title}</span>
+                </Link>
+              </ScrollReveal>
             ))}
           </div>
-          <div className={styles.centerCta}>
+          <ScrollReveal delay={320} className={styles.centerCta}>
             <Button href="/gallery" variant="outline">
               Full Gallery
             </Button>
-          </div>
+          </ScrollReveal>
         </div>
-      </section>
+      </ScrollReveal>
 
-      <TestimonialSlider items={testimonials} />
+      <ScrollReveal variant="in">
+        <TestimonialSlider items={testimonials} />
+      </ScrollReveal>
 
-      <CTABand description={lorem.medium} />
+      <ScrollReveal variant="up">
+        <CTABand
+          title="Ready to Transform Your Property?"
+          description={valueProposition.text}
+          primaryLabel={cta.primaryLabel}
+        />
+      </ScrollReveal>
     </>
   );
 }

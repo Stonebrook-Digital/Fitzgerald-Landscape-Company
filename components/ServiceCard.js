@@ -13,7 +13,7 @@ export default function ServiceCard({ title, description, image, href = "/servic
         <h3>{title}</h3>
         <p>{description}</p>
         <Link href={href} className={styles.link}>
-          Lorem more
+          Learn more
           <span aria-hidden="true">→</span>
         </Link>
       </div>

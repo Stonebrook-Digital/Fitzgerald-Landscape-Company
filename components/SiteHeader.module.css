@@ -1,67 +1,78 @@
 .header {
   position: fixed;
-  top: 0;
+  top: var(--promo-h);
   left: 0;
   right: 0;
   z-index: 1000;
-  height: var(--header-h);
-  display: flex;
-  align-items: center;
+  transition: top 0.45s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.bar {
+  position: relative;
+  background: var(--cream);
+  border-bottom: 1px solid transparent;
   transition:
-    background var(--transition),
-    box-shadow var(--transition),
-    backdrop-filter var(--transition);
+    background 0.45s cubic-bezier(0.33, 1, 0.68, 1),
+    border-color 0.45s cubic-bezier(0.33, 1, 0.68, 1),
+    box-shadow 0.45s cubic-bezier(0.33, 1, 0.68, 1),
+    backdrop-filter 0.45s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-.header::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(15, 36, 25, 0.5) 0%,
-    transparent 100%
-  );
-  pointer-events: none;
-  opacity: 1;
-  transition: opacity var(--transition);
+/* At top: light glass, no shadow */
+.atTop .bar {
+  background: rgba(247, 245, 240, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom-color: transparent;
+  box-shadow: none;
 }
 
-.scrolled {
-  background: rgba(247, 245, 240, 0.92);
-  backdrop-filter: blur(16px);
-  box-shadow: var(--shadow);
+/* Scrolled: solid feel + elevation */
+.scrolled .bar {
+  background: rgba(247, 245, 240, 0.96);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom-color: var(--cream-dark);
+  box-shadow: 0 4px 24px rgba(15, 36, 25, 0.1);
 }
 
-.scrolled::before {
-  opacity: 0;
+/* Compact: tighter bar + stronger shadow */
+.compact .bar {
+  box-shadow: 0 8px 32px rgba(15, 36, 25, 0.14);
 }
 
 .inner {
+  height: var(--header-bar-h);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
   position: relative;
   z-index: 2;
+  transition: height 0.45s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .logo {
   flex-shrink: 0;
   display: flex;
   align-items: center;
+  transition: transform 0.45s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.compact .logo {
+  transform: scale(0.94);
+  transform-origin: left center;
 }
 
 .logoImg {
-  height: 48px;
+  height: 50px;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
-  transition: filter var(--transition);
+  transition: height 0.45s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-.scrolled .logoImg {
-  filter: none;
+.compact .logoImg {
+  height: 42px;
 }
 
 .nav {
@@ -86,37 +97,55 @@
   padding: 0.5rem 1rem;
   font-size: 0.88rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.92);
+  color: var(--charcoal);
   border-radius: 999px;
   transition:
-    color var(--transition),
-    background var(--transition);
+    color 0.35s ease,
+    background 0.35s ease,
+    transform 0.35s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .scrolled .navList a {
-  color: var(--charcoal);
+  padding: 0.45rem 0.9rem;
+  font-size: 0.86rem;
 }
 
 .navList a:hover,
 .navList a.active {
-  color: var(--white);
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.scrolled .navList a:hover,
-.scrolled .navList a.active {
   color: var(--green-800);
   background: var(--green-100);
+}
+
+.navList a:hover {
+  transform: translateY(-1px);
+}
+
+.navList a.active {
+  background: var(--green-100);
+  box-shadow: inset 0 0 0 1px rgba(45, 90, 71, 0.12);
 }
 
 .actions {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  transition: transform 0.45s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.compact .actions {
+  transform: scale(0.96);
+  transform-origin: right center;
 }
 
 .cta {
   display: none;
+  transition:
+    box-shadow 0.35s ease,
+    transform 0.35s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.scrolled .cta {
+  box-shadow: 0 2px 12px rgba(15, 36, 25, 0.12);
 }
 
 @media (min-width: 900px) {
@@ -133,30 +162,29 @@
   width: 44px;
   height: 44px;
   padding: 10px;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: var(--green-100);
+  border: 1px solid var(--cream-dark);
   border-radius: 10px;
   cursor: pointer;
-  transition: background var(--transition);
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    transform 0.35s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-.scrolled .toggle {
-  background: var(--green-100);
-  border-color: var(--green-200, #d4e5db);
+.compact .toggle {
+  width: 40px;
+  height: 40px;
 }
 
 .toggle span {
   display: block;
   height: 2px;
-  background: var(--white);
+  background: var(--green-800);
   border-radius: 2px;
   transition:
-    transform var(--transition),
-    opacity var(--transition);
-}
-
-.scrolled .toggle span {
-  background: var(--green-800);
+    transform 0.35s cubic-bezier(0.33, 1, 0.68, 1),
+    opacity 0.35s ease;
 }
 
 .menuOpen .toggle span:nth-child(1) {
@@ -180,11 +208,12 @@
 .mobileMenu {
   position: fixed;
   inset: 0;
-  top: 0;
+  top: var(--promo-h);
   z-index: 1;
   background: var(--green-950);
   padding: calc(var(--header-h) + 2rem) 1.5rem 2rem;
   animation: fadeIn 0.3s ease;
+  transition: top 0.45s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .mobileMenu nav ul {
@@ -214,5 +243,19 @@
 @media (min-width: 900px) {
   .mobileMenu {
     display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .bar,
+  .inner,
+  .logo,
+  .logoImg,
+  .navList a,
+  .actions,
+  .toggle,
+  .mobileMenu {
+    transition: none;
   }
 }

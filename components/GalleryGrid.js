@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { galleryCategories, galleryItems } from "@/lib/content";
+import ScrollReveal from "@/components/ScrollReveal";
 import styles from "./GalleryGrid.module.css";
 
 export default function GalleryGrid() {
@@ -44,25 +45,30 @@ export default function GalleryGrid() {
 
       <div className={styles.grid}>
         {filtered.map((item, index) => (
-          <button
+          <ScrollReveal
             key={item.id}
-            type="button"
-            className={styles.item}
-            style={{ animationDelay: `${index * 0.05}s` }}
-            onClick={() => setLightbox(item)}
-            aria-label={`View ${item.title}`}
+            delay={(index % 6) * 80}
+            variant="scale"
+            className={styles.itemReveal}
           >
-            <Image
-              src={item.image}
-              alt=""
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            />
-            <div className={styles.itemOverlay}>
-              <span className={styles.category}>{item.category}</span>
-              <span className={styles.title}>{item.title}</span>
-            </div>
-          </button>
+            <button
+              type="button"
+              className={styles.item}
+              onClick={() => setLightbox(item)}
+              aria-label={`View ${item.title}`}
+            >
+              <Image
+                src={item.image}
+                alt=""
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
+              <div className={styles.itemOverlay}>
+                <span className={styles.category}>{item.category}</span>
+                <span className={styles.title}>{item.title}</span>
+              </div>
+            </button>
+          </ScrollReveal>
         ))}
       </div>
 

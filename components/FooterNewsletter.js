@@ -19,7 +19,7 @@ export default function FooterNewsletter() {
         placeholder="placeholder@example.com"
         aria-label="Email address"
       />
-      <button type="submit">Ipsum</button>
+      <button type="submit">Subscribe</button>
     </form>
   );
 }

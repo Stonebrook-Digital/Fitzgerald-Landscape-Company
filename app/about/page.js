@@ -3,7 +3,15 @@ import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import CTABand from "@/components/CTABand";
 import ProcessSteps from "@/components/ProcessSteps";
-import { lorem, team, heroImage } from "@/lib/content";
+import ScrollReveal from "@/components/ScrollReveal";
+import {
+  aboutCopy,
+  team,
+  heroImage,
+  headerQuote,
+  valueProposition,
+  cta,
+} from "@/lib/content";
 import shared from "../shared.module.css";
 
 export const metadata = {
@@ -11,111 +19,149 @@ export const metadata = {
 };
 
 const values = [
-  { title: "Lorem Integrity", text: lorem.medium },
-  { title: "Ipsum Quality", text: lorem.medium },
-  { title: "Dolor Innovation", text: lorem.medium },
-  { title: "Sit Community", text: lorem.medium },
+  {
+    title: "Fair Dealing",
+    text: "Honest proposals, clear communication, and work done right the first time.",
+  },
+  {
+    title: "Steadfastness",
+    text: "Reliable crews and consistent quality you can count on season after season.",
+  },
+  {
+    title: "Kindness to Clients",
+    text: "We treat your home with respect and your questions with patience.",
+  },
+  {
+    title: "Moderation in All Things",
+    text: "Thoughtful recommendations that fit your property, budget, and lifestyle.",
+  },
 ];
 
 export default function AboutPage() {
   return (
     <>
       <PageHero
-        title="Lorem Ipsum Our Story"
+        title="Crafting Noble Outdoor Spaces"
         subtitle="About"
         image={heroImage}
         size="compact"
       />
 
-      <section className={shared.pageSection}>
+      <ScrollReveal as="section" className={shared.pageSection}>
         <div className="container">
           <div className={shared.twoCol}>
             <div>
               <SectionHeading
-                eyebrow="Heritage"
-                title={lorem.heading}
-                description={lorem.long}
+                eyebrow="Our Story"
+                title="Fitzgerald Landscape Co."
+                description={aboutCopy.intro}
                 align="left"
               />
               <p style={{ color: "var(--slate)", lineHeight: 1.75, marginBottom: "1rem" }}>
-                {lorem.long}
+                {aboutCopy.heritage}
               </p>
-              <p style={{ color: "var(--slate)", lineHeight: 1.75 }}>
-                {lorem.medium}
-              </p>
+              <blockquote
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontStyle: "italic",
+                  color: "var(--green-800)",
+                  borderLeft: "4px solid var(--gold)",
+                  paddingLeft: "1.25rem",
+                  marginTop: "1.5rem",
+                  lineHeight: 1.6,
+                }}
+              >
+                {headerQuote}
+              </blockquote>
             </div>
-            <div
-              style={{
-                position: "relative",
-                aspectRatio: "4/5",
-                borderRadius: "var(--radius-lg)",
-                overflow: "hidden",
-                boxShadow: "var(--shadow-lg)",
-              }}
-            >
-              <Image
-                src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&q=80"
-                alt=""
-                fill
-                sizes="50vw"
-                style={{ objectFit: "cover" }}
-              />
-            </div>
+            <ScrollReveal variant="scale" delay={120}>
+              <div
+                style={{
+                  position: "relative",
+                  aspectRatio: "4/5",
+                  borderRadius: "var(--radius-lg)",
+                  overflow: "hidden",
+                  boxShadow: "var(--shadow-lg)",
+                }}
+              >
+                <Image
+                  src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&q=80"
+                  alt=""
+                  fill
+                  sizes="50vw"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+            </ScrollReveal>
           </div>
         </div>
-      </section>
+      </ScrollReveal>
 
-      <section className={shared.pageSectionAlt}>
+      <ScrollReveal as="section" className={shared.pageSectionAlt} delay={80}>
         <div className="container">
           <SectionHeading
             eyebrow="Values"
-            title="Consectetur Adipiscing"
-            description={lorem.medium}
+            title="How We Work"
+            description={valueProposition.text}
           />
           <div className={shared.valuesList}>
-            {values.map((v) => (
-              <article key={v.title} className={shared.valueItem}>
+            {values.map((v, index) => (
+              <ScrollReveal
+                as="article"
+                key={v.title}
+                delay={index * 90}
+                variant="up"
+                className={shared.valueItem}
+              >
                 <h3>{v.title}</h3>
                 <p>{v.text}</p>
-              </article>
+              </ScrollReveal>
             ))}
           </div>
         </div>
-      </section>
+      </ScrollReveal>
 
-      <section className={shared.pageSection}>
+      <ScrollReveal as="section" className={shared.pageSection} delay={80}>
         <div className="container">
           <SectionHeading
-            eyebrow="Team"
-            title="Lorem Ipsum Leaders"
-            description={lorem.medium}
+            eyebrow="Leadership"
+            title="Meet the Team"
+            description="The people behind every project."
           />
           <div className={shared.teamGrid}>
-            {team.map((member) => (
-              <article key={member.name} className={shared.teamCard}>
+            {team.map((member, index) => (
+              <ScrollReveal
+                as="article"
+                key={member.name}
+                delay={index * 100}
+                variant="scale"
+                className={shared.teamCard}
+              >
                 <div className={shared.teamPhoto}>
                   <Image src={member.image} alt="" fill sizes="200px" />
                 </div>
                 <h3>{member.name}</h3>
                 <p>{member.role}</p>
-              </article>
+              </ScrollReveal>
             ))}
           </div>
         </div>
-      </section>
+      </ScrollReveal>
 
-      <section className={shared.pageSectionAlt}>
+      <ScrollReveal as="section" className={shared.pageSectionAlt} delay={80}>
         <div className="container">
           <SectionHeading
             eyebrow="Approach"
-            title="Dolor Sit Process"
-            description={lorem.medium}
+            title="From Consultation to Care"
+            description="A straightforward process that keeps you informed at every step."
           />
           <ProcessSteps />
         </div>
-      </section>
+      </ScrollReveal>
 
-      <CTABand />
+      <ScrollReveal variant="up">
+        <CTABand primaryLabel={cta.primaryLabel} />
+      </ScrollReveal>
     </>
   );
 }

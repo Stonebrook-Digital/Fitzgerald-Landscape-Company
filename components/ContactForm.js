@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { services } from "@/lib/content";
 import styles from "./ContactForm.module.css";
 
 const initial = {
@@ -18,11 +19,11 @@ export default function ContactForm() {
 
   const validate = () => {
     const next = {};
-    if (!form.name.trim()) next.name = "Lorem ipsum required";
-    if (!form.email.trim()) next.email = "Lorem ipsum required";
+    if (!form.name.trim()) next.name = "Name is required";
+    if (!form.email.trim()) next.email = "Email is required";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
-      next.email = "Dolor sit invalid";
-    if (!form.message.trim()) next.message = "Lorem ipsum required";
+      next.email = "Enter a valid email address";
+    if (!form.message.trim()) next.message = "Message is required";
     return next;
   };
 
@@ -47,10 +48,10 @@ export default function ContactForm() {
     return (
       <div className={styles.success} role="status">
         <div className={styles.successIcon}>✓</div>
-        <h3>Lorem Ipsum Sent</h3>
+        <h3>Message Sent</h3>
         <p>
-          Dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua.
+          Thank you for reaching out. We&apos;ll review your request and get back
+          to you shortly to schedule your free quote.
         </p>
         <button type="button" onClick={() => setSubmitted(false)}>
           Send another
@@ -63,7 +64,7 @@ export default function ContactForm() {
     <form className={styles.form} onSubmit={handleSubmit} noValidate>
       <div className={styles.row}>
         <div className={styles.field}>
-          <label htmlFor="name">Lorem Name</label>
+          <label htmlFor="name">Name</label>
           <input
             id="name"
             name="name"
@@ -72,7 +73,7 @@ export default function ContactForm() {
             onChange={handleChange}
             aria-invalid={!!errors.name}
             aria-describedby={errors.name ? "name-error" : undefined}
-            placeholder="Lorem Ipsum"
+            placeholder="Your name"
           />
           {errors.name && (
             <span id="name-error" className={styles.error}>
@@ -81,7 +82,7 @@ export default function ContactForm() {
           )}
         </div>
         <div className={styles.field}>
-          <label htmlFor="email">Ipsum Email</label>
+          <label htmlFor="email">Email</label>
           <input
             id="email"
             name="email"
@@ -89,7 +90,7 @@ export default function ContactForm() {
             value={form.email}
             onChange={handleChange}
             aria-invalid={!!errors.email}
-            placeholder="placeholder@example.com"
+            placeholder="you@example.com"
           />
           {errors.email && (
             <span className={styles.error}>{errors.email}</span>
@@ -99,7 +100,7 @@ export default function ContactForm() {
 
       <div className={styles.row}>
         <div className={styles.field}>
-          <label htmlFor="phone">Dolor Phone</label>
+          <label htmlFor="phone">Phone</label>
           <input
             id="phone"
             name="phone"
@@ -110,25 +111,26 @@ export default function ContactForm() {
           />
         </div>
         <div className={styles.field}>
-          <label htmlFor="service">Sit Service</label>
+          <label htmlFor="service">Service</label>
           <select
             id="service"
             name="service"
             value={form.service}
             onChange={handleChange}
           >
-            <option value="">Select lorem...</option>
-            <option value="design">Lorem Design</option>
-            <option value="install">Ipsum Installation</option>
-            <option value="hardscape">Dolor Hardscape</option>
-            <option value="maintenance">Sit Maintenance</option>
-            <option value="other">Amet Other</option>
+            <option value="">Select a service...</option>
+            {services.map((s) => (
+              <option key={s.id} value={s.id}>
+                {s.title}
+              </option>
+            ))}
+            <option value="other">Other / Multiple</option>
           </select>
         </div>
       </div>
 
       <div className={styles.field}>
-        <label htmlFor="message">Consectetur Message</label>
+        <label htmlFor="message">Message</label>
         <textarea
           id="message"
           name="message"
@@ -136,7 +138,7 @@ export default function ContactForm() {
           value={form.message}
           onChange={handleChange}
           aria-invalid={!!errors.message}
-          placeholder="Lorem ipsum dolor sit amet..."
+          placeholder="Tell us about your property and what you're looking for..."
         />
         {errors.message && (
           <span className={styles.error}>{errors.message}</span>
@@ -144,7 +146,7 @@ export default function ContactForm() {
       </div>
 
       <button type="submit" className={styles.submit}>
-        Submit Lorem
+        Submit Request
       </button>
     </form>
   );

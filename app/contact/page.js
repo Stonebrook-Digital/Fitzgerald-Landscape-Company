@@ -1,7 +1,8 @@
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import ContactForm from "@/components/ContactForm";
-import { lorem, placeholderContact } from "@/lib/content";
+import ScrollReveal from "@/components/ScrollReveal";
+import { contact, valueProposition, cta } from "@/lib/content";
 import shared from "../shared.module.css";
 
 export const metadata = {
@@ -9,38 +10,56 @@ export const metadata = {
 };
 
 const faqs = [
-  { q: "Lorem ipsum dolor sit amet?", a: lorem.medium },
-  { q: "Consectetur adipiscing elit?", a: lorem.medium },
-  { q: "Sed do eiusmod tempor?", a: lorem.medium },
-  { q: "Ut labore et dolore magna?", a: lorem.medium },
+  {
+    q: "Do you offer free quotes?",
+    a: "Yes. We provide free on-site consultations and estimates for all services.",
+  },
+  {
+    q: "What areas do you serve?",
+    a: "We are based in Brooklyn and serve surrounding neighborhoods. Contact us to confirm availability for your address.",
+  },
+  {
+    q: "Do you offer year-round maintenance?",
+    a: "Absolutely. Our maintenance plans include lawn care, bed work, aeration, fertilization, and seasonal cleanups.",
+  },
+  {
+    q: "When should I book seasonal services?",
+    a: "Spring services like sod and aeration book early. Fall leaf cleanups and winter snow contracts should be scheduled ahead of the season.",
+  },
 ];
 
 export default function ContactPage() {
   return (
     <>
       <PageHero
-        title="Lorem Ipsum Get In Touch"
+        title="Request a Free Quote"
         subtitle="Contact"
         image="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1920&q=85"
         size="compact"
+        primaryCta={{ href: "#contact-form", label: cta.primaryLabel }}
       />
 
-      <section className={shared.pageSection}>
+      <ScrollReveal as="section" className={shared.pageSection} id="contact-form">
         <div className="container">
           <div className={shared.contactGrid}>
-            <div className={shared.contactInfo}>
+            <ScrollReveal className={shared.contactInfo} delay={80}>
               <SectionHeading
                 eyebrow="Reach Out"
-                title={lorem.heading}
-                description={lorem.medium}
+                title="Let's Discuss Your Property"
+                description={valueProposition.text}
                 align="left"
               />
 
               <div className={shared.infoBlock}>
+                <h3>{contact.owner}</h3>
+                <p>Fitzgerald Landscape Co.</p>
+              </div>
+
+              <div className={shared.infoBlock}>
                 <h3>Phone</h3>
                 <p>
-                  <a href={`tel:${placeholderContact.phone.replace(/\D/g, "")}`}>
-                    {placeholderContact.phone}
+                  <a href={`tel:${contact.phone.replace(/\D/g, "")}`}>
+                    {contact.phone}
                   </a>
                 </p>
               </div>
@@ -48,28 +67,26 @@ export default function ContactPage() {
               <div className={shared.infoBlock}>
                 <h3>Email</h3>
                 <p>
-                  <a href={`mailto:${placeholderContact.email}`}>
-                    {placeholderContact.email}
-                  </a>
+                  <a href={`mailto:${contact.email}`}>{contact.email}</a>
                 </p>
               </div>
 
               <div className={shared.infoBlock}>
                 <h3>Address</h3>
-                <p>{placeholderContact.address}</p>
+                <p>{contact.address}</p>
               </div>
 
               <div className={shared.infoBlock}>
                 <h3>Hours</h3>
-                <p>{placeholderContact.hours}</p>
+                <p>{contact.hours}</p>
               </div>
 
               <div className={shared.mapPlaceholder} aria-hidden="true">
-                Lorem Map Placeholder
+                Map — {contact.address}
               </div>
-            </div>
+            </ScrollReveal>
 
-            <div className={shared.formCard}>
+            <ScrollReveal variant="scale" delay={160} className={shared.formCard}>
               <h2
                 style={{
                   fontFamily: "var(--font-display)",
@@ -78,7 +95,7 @@ export default function ContactPage() {
                   marginBottom: "0.5rem",
                 }}
               >
-                Send Lorem Message
+                {cta.primaryLabel}
               </h2>
               <p
                 style={{
@@ -87,31 +104,38 @@ export default function ContactPage() {
                   fontSize: "0.95rem",
                 }}
               >
-                {lorem.short}
+                Tell us about your property and the services you&apos;re interested in.
+                We&apos;ll follow up to schedule a consultation.
               </p>
               <ContactForm />
-            </div>
+            </ScrollReveal>
           </div>
         </div>
-      </section>
+      </ScrollReveal>
 
-      <section className={shared.pageSectionAlt}>
+      <ScrollReveal as="section" className={shared.pageSectionAlt} delay={80}>
         <div className="container">
           <SectionHeading
             eyebrow="FAQ"
-            title="Amet Consectetur Questions"
-            description={lorem.short}
+            title="Common Questions"
+            description="Quick answers before you reach out."
           />
           <div className={shared.faqList}>
-            {faqs.map((faq) => (
-              <article key={faq.q} className={shared.faqItem}>
+            {faqs.map((faq, index) => (
+              <ScrollReveal
+                as="article"
+                key={faq.q}
+                delay={index * 80}
+                variant="up"
+                className={shared.faqItem}
+              >
                 <h3>{faq.q}</h3>
                 <p>{faq.a}</p>
-              </article>
+              </ScrollReveal>
             ))}
           </div>
         </div>
-      </section>
+      </ScrollReveal>
     </>
   );
 }

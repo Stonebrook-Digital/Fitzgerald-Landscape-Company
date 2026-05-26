@@ -1,7 +1,8 @@
 import { Cormorant_Garamond, Outfit } from "next/font/google";
+import PromoBar from "@/components/PromoBar";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
-import { siteName } from "@/lib/content";
+import { siteName, valueProposition } from "@/lib/content";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -23,14 +24,14 @@ export const metadata = {
     default: siteName,
     template: `%s | ${siteName}`,
   },
-  description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fitzgerald Landscape Co.",
+  description: `${valueProposition.text} ${siteName} — landscape design, installation, and maintenance in Brooklyn, NY.`,
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${cormorant.variable} ${outfit.variable}`}>
       <body>
+        <PromoBar />
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />

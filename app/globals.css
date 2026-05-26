@@ -20,8 +20,24 @@
   --radius-lg: 20px;
   --font-display: var(--font-cormorant), Georgia, serif;
   --font-body: var(--font-outfit), system-ui, sans-serif;
-  --header-h: 88px;
+  --promo-h: 40px;
+  --header-bar-h: 76px;
+  --header-h: calc(var(--promo-h) + var(--header-bar-h));
   --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html.header-compact {
+  --header-bar-h: 62px;
+}
+
+html.promo-hidden {
+  --promo-h: 0px;
+}
+
+html.promo-hidden .promo-bar {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 html {

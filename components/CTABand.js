@@ -1,11 +1,12 @@
 import Button from "./Button";
+import { cta } from "@/lib/content";
 import styles from "./CTABand.module.css";
 
 export default function CTABand({
-  title = "Lorem Ipsum Dolor Sit Amet?",
+  title = "Ready to Transform Your Property?",
   description,
-  primaryHref = "/contact",
-  primaryLabel = "Lorem Consult",
+  primaryHref = cta.primaryHref,
+  primaryLabel = cta.primaryLabel,
   secondaryHref = "/gallery",
   secondaryLabel = "View Gallery",
 }) {

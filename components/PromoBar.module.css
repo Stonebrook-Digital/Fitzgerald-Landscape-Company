@@ -1,0 +1,44 @@
+.promo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1001;
+  height: var(--promo-h);
+  display: flex;
+  align-items: center;
+  background: var(--green-900);
+  color: var(--white);
+  font-size: 0.82rem;
+  transition:
+    transform 0.45s cubic-bezier(0.33, 1, 0.68, 1),
+    opacity 0.4s ease;
+}
+
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem 1.25rem;
+  text-align: center;
+}
+
+.inner p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  white-space: nowrap;
+  transition: color var(--transition);
+}
+
+.link:hover {
+  color: var(--white);
+}

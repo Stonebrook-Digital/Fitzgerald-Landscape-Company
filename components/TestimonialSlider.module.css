@@ -1,58 +1,224 @@
 .section {
   padding: 5rem 0;
-  background: var(--white);
+  background: var(--green-50);
 }
 
-.slider {
-  max-width: 800px;
-  margin-inline: auto;
+.section .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.googleBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0 auto 2.5rem;
+  padding: 1rem 1.5rem;
+  background: var(--white);
+  border: 1px solid var(--cream-dark);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.googleBadge:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.badgeText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
   text-align: center;
 }
 
-.track {
-  position: relative;
-  min-height: 220px;
-}
-
-.slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transform: translateY(12px);
-  transition:
-    opacity 0.5s ease,
-    transform 0.5s ease;
-  pointer-events: none;
-}
-
-.slide.active {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-.quote {
-  font-family: var(--font-display);
-  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
-  font-style: italic;
-  line-height: 1.55;
-  color: var(--green-900);
-  margin-bottom: 2rem;
-}
-
-.author {
-  display: block;
-  font-style: normal;
-  font-weight: 600;
+.badgeLabel {
   font-size: 1rem;
   color: var(--charcoal);
 }
 
-.role {
-  display: block;
+.badgeLabel strong {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--green-900);
+  margin-right: 0.25rem;
+}
+
+.badgeCount {
+  font-size: 0.82rem;
+  color: var(--slate);
+}
+
+.slider {
+  width: 100%;
+  max-width: 680px;
+  margin-inline: auto;
+}
+
+.viewport {
+  overflow: hidden;
+  width: 100%;
+  border-radius: var(--radius-lg);
+}
+
+.track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.85s cubic-bezier(0.33, 1, 0.68, 1);
+  will-change: transform;
+}
+
+.card {
+  flex: 0 0 100%;
+  min-width: 0;
+  padding: 0 0.25rem;
+  box-sizing: border-box;
+}
+
+.cardInner {
+  background: var(--white);
+  border: 1px solid var(--cream-dark);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.75rem;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+
+.reviewer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--green-100);
+}
+
+.avatarWrap {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--green-100);
+  box-shadow: 0 4px 12px rgba(15, 36, 25, 0.12);
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reviewerMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.author {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--green-900);
+}
+
+.location {
   font-size: 0.85rem;
   color: var(--slate);
-  margin-top: 0.25rem;
+}
+
+.quoteBlock {
+  margin: 0;
+}
+
+.quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--green-800);
+  text-align: center;
+  max-width: 36rem;
+  margin-inline: auto;
+}
+
+.cardFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--green-50);
+}
+
+.source {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--slate);
+}
+
+.date {
+  font-size: 0.8rem;
+  color: var(--slate);
+}
+
+.faceRow {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.faceBtn {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  overflow: hidden;
+  opacity: 0.55;
+  transition:
+    opacity 0.45s ease,
+    border-color 0.45s ease,
+    transform 0.45s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.faceBtn:hover {
+  opacity: 0.85;
+  transform: scale(1.05);
+}
+
+.faceActive {
+  opacity: 1;
+  border-color: var(--gold);
+  transform: scale(1.08);
+  box-shadow: 0 4px 16px rgba(201, 162, 39, 0.35);
+}
+
+.faceImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .controls {
@@ -60,7 +226,7 @@
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
-  margin-top: 2.5rem;
+  margin-top: 1.75rem;
 }
 
 .controls > button:first-child,
@@ -69,19 +235,21 @@
   height: 44px;
   border-radius: 50%;
   border: 2px solid var(--green-200, #d4e5db);
-  background: var(--green-50);
+  background: var(--white);
   color: var(--green-800);
   font-size: 1.1rem;
   cursor: pointer;
   transition:
-    background var(--transition),
-    border-color var(--transition);
+    background 0.4s ease,
+    border-color 0.4s ease,
+    transform 0.4s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .controls > button:hover {
   background: var(--green-800);
   border-color: var(--green-800);
   color: var(--white);
+  transform: scale(1.05);
 }
 
 .dots {
@@ -98,12 +266,32 @@
   cursor: pointer;
   padding: 0;
   transition:
-    transform var(--transition),
-    background var(--transition);
+    transform 0.45s cubic-bezier(0.33, 1, 0.68, 1),
+    background 0.45s ease;
 }
 
 .dotActive,
 .dots button:hover {
   background: var(--green-700);
   transform: scale(1.2);
+}
+
+@media (min-width: 640px) {
+  .cardInner {
+    padding: 2.25rem 2.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    transition: none;
+  }
+
+  .faceBtn,
+  .controls > button:first-child,
+  .controls > button:last-child,
+  .dots button,
+  .googleBadge {
+    transition: none;
+  }
 }

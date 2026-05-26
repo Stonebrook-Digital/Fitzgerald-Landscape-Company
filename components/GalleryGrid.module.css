@@ -50,8 +50,14 @@
   }
 }
 
+.itemReveal {
+  display: block;
+  width: 100%;
+}
+
 .item {
   position: relative;
+  width: 100%;
   aspect-ratio: 4 / 3;
   border: none;
   border-radius: var(--radius);
@@ -59,7 +65,6 @@
   cursor: pointer;
   padding: 0;
   background: var(--green-900);
-  animation: scaleIn 0.5s ease both;
 }
 
 .item img {

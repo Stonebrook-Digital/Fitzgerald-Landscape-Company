@@ -1,0 +1,30 @@
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.up {
+  transform: translateY(32px);
+}
+
+.in {
+  transform: none;
+}
+
+.scale {
+  transform: scale(0.97);
+}
+
+.visible.up,
+.visible.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.visible.scale {
+  opacity: 1;
+  transform: scale(1);
+}

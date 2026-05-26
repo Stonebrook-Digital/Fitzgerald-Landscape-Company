@@ -1,58 +1,51 @@
 import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
-import ServiceCard from "@/components/ServiceCard";
+import ServicesOverview from "@/components/ServicesOverview";
 import CTABand from "@/components/CTABand";
-import { lorem, services } from "@/lib/content";
+import ScrollReveal from "@/components/ScrollReveal";
+import { valueProposition, cta, services } from "@/lib/content";
 import shared from "../shared.module.css";
 
 export const metadata = {
   title: "Services",
 };
 
-const checklist = [
-  "Lorem ipsum dolor sit",
-  "Consectetur adipiscing elit",
-  "Sed do eiusmod tempor",
-  "Ut labore et dolore magna",
-];
-
 export default function ServicesPage() {
   return (
     <>
       <PageHero
-        title="Lorem Ipsum Landscape Services"
+        title="Landscape Services for Every Season"
         subtitle="Services"
         image="https://images.unsplash.com/photo-1598902108854-10e335adac99?w=1920&q=85"
         size="compact"
-        primaryCta={{ href: "/contact", label: "Get Lorem Quote" }}
+        primaryCta={{ href: cta.primaryHref, label: cta.primaryLabel }}
       />
 
-      <section className={shared.pageSection}>
+      <ScrollReveal as="section" className={shared.pageSection}>
         <div className="container">
           <SectionHeading
             eyebrow="Overview"
-            title={lorem.heading}
-            description={lorem.long}
+            title="Year-Round & Seasonal Care"
+            description={valueProposition.text}
           />
-          <div className={`${shared.cardGrid} ${shared.cardGrid3}`}>
-            {services.map((service) => (
-              <ServiceCard key={service.id} {...service} href="/contact" />
-            ))}
-          </div>
+          <ServicesOverview />
         </div>
-      </section>
+      </ScrollReveal>
 
-      <section className={shared.pageSectionAlt}>
+      <ScrollReveal as="section" className={shared.pageSectionAlt} delay={80}>
         <div className="container">
           <SectionHeading
             eyebrow="Details"
-            title="Sit Amet Service Breakdown"
-            description={lorem.medium}
+            title="What We Offer"
+            description="Every service is delivered with the same commitment to fair dealing, quality workmanship, and respect for your property."
           />
           {services.map((service, index) => (
-            <article
+            <ScrollReveal
+              as="article"
               key={service.id}
+              delay={index * 60}
+              variant="up"
               className={`${shared.serviceDetail} ${index % 2 === 1 ? shared.serviceDetailReverse : ""}`}
             >
               <div className={shared.serviceImage}>
@@ -61,23 +54,24 @@ export default function ServicesPage() {
               <div className={shared.serviceContent}>
                 <h3>{service.title}</h3>
                 <p>{service.description}</p>
-                <p>{lorem.medium}</p>
                 <ul className={shared.serviceList}>
-                  {checklist.map((item) => (
+                  {service.items.map((item) => (
                     <li key={`${service.id}-${item}`}>{item}</li>
                   ))}
                 </ul>
               </div>
-            </article>
+            </ScrollReveal>
           ))}
         </div>
-      </section>
+      </ScrollReveal>
 
-      <CTABand
-        title="Ready for Lorem Ipsum?"
-        description={lorem.medium}
-        primaryLabel="Request Quote"
-      />
+      <ScrollReveal variant="up">
+        <CTABand
+          title="Ready to Get Started?"
+          description={valueProposition.text}
+          primaryLabel={cta.primaryLabel}
+        />
+      </ScrollReveal>
     </>
   );
 }

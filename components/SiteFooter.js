@@ -3,8 +3,10 @@ import Image from "next/image";
 import {
   navLinks,
   siteName,
-  placeholderContact,
-  lorem,
+  contact,
+  valueProposition,
+  headerQuote,
+  cta,
 } from "@/lib/content";
 import FooterNewsletter from "./FooterNewsletter";
 import styles from "./SiteFooter.module.css";
@@ -27,7 +29,10 @@ export default function SiteFooter() {
                   className={styles.logo}
                 />
               </Link>
-              <p>{lorem.medium}</p>
+              <p>{valueProposition.text}</p>
+              <blockquote className={styles.quote}>
+                <p>{headerQuote}</p>
+              </blockquote>
             </div>
 
             <div>
@@ -42,26 +47,30 @@ export default function SiteFooter() {
             </div>
 
             <div>
-              <h3>Lorem Contact</h3>
+              <h3>Contact</h3>
               <ul className={styles.contactList}>
+                <li>{contact.owner}</li>
                 <li>
-                  <a href={`tel:${placeholderContact.phone.replace(/\D/g, "")}`}>
-                    {placeholderContact.phone}
+                  <a href={`tel:${contact.phone.replace(/\D/g, "")}`}>
+                    {contact.phone}
                   </a>
                 </li>
                 <li>
-                  <a href={`mailto:${placeholderContact.email}`}>
-                    {placeholderContact.email}
-                  </a>
+                  <a href={`mailto:${contact.email}`}>{contact.email}</a>
                 </li>
-                <li>{placeholderContact.address}</li>
-                <li>{placeholderContact.hours}</li>
+                <li>{contact.address}</li>
+                <li>{contact.hours}</li>
               </ul>
+              <Link href={cta.primaryHref} className={styles.footerCta}>
+                {cta.primaryLabel}
+              </Link>
             </div>
 
             <div>
-              <h3>Dolor Newsletter</h3>
-              <p className={styles.newsletterText}>{lorem.short}</p>
+              <h3>Stay Updated</h3>
+              <p className={styles.newsletterText}>
+                Seasonal tips, promotions, and project highlights from our crew.
+              </p>
               <FooterNewsletter />
             </div>
           </div>
@@ -71,12 +80,10 @@ export default function SiteFooter() {
       <div className={styles.bottom}>
         <div className="container">
           <p>
-            &copy; {year} {siteName}. Lorem ipsum dolor sit amet.
+            &copy; {year} {siteName}. All rights reserved.
           </p>
           <div className={styles.legal}>
-            <span>Lorem</span>
-            <span>Ipsum</span>
-            <span>Dolor</span>
+            <span>{contact.address}</span>
           </div>
         </div>
       </div>
