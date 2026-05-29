@@ -5,14 +5,15 @@ import SectionHeading from "@/components/SectionHeading";
 import ServicesOverview from "@/components/ServicesOverview";
 import StatsBar from "@/components/StatsBar";
 import TestimonialSlider from "@/components/TestimonialSlider";
+import ServiceAreaMap from "@/components/ServiceAreaMap";
 import CTABand from "@/components/CTABand";
+import PricingSection from "@/components/PricingSection";
 import ScrollReveal from "@/components/ScrollReveal";
 import Button from "@/components/Button";
 import {
   heroImage,
   headerQuote,
   valueProposition,
-  pricing,
   testimonials,
   getFeaturedGalleryItems,
   cta,
@@ -64,31 +65,8 @@ export default function HomePage() {
         </div>
       </ScrollReveal>
 
-      <ScrollReveal as="section" className={styles.section} delay={80}>
-        <div className="container">
-          <SectionHeading
-            eyebrow={pricing.eyebrow}
-            title={pricing.title}
-            description={pricing.description}
-          />
-          <ul className={styles.pricingList}>
-            {pricing.points.map((point, index) => (
-              <ScrollReveal
-                as="li"
-                key={point}
-                delay={120 + index * 100}
-                variant="up"
-              >
-                {point}
-              </ScrollReveal>
-            ))}
-          </ul>
-          <ScrollReveal delay={280} className={styles.centerCta}>
-            <Button href={cta.primaryHref} variant="outline">
-              {cta.primaryLabel}
-            </Button>
-          </ScrollReveal>
-        </div>
+      <ScrollReveal as="section" delay={80}>
+        <PricingSection />
       </ScrollReveal>
 
       <ScrollReveal as="section" className={styles.sectionAlt} delay={80}>
@@ -107,7 +85,12 @@ export default function HomePage() {
                 className={styles.galleryReveal}
               >
                 <Link href="/gallery" className={styles.galleryItem}>
-                  <Image src={item.image} alt="" fill sizes="33vw" />
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                  />
                   <span>{item.title}</span>
                 </Link>
               </ScrollReveal>
@@ -123,6 +106,10 @@ export default function HomePage() {
 
       <ScrollReveal variant="in">
         <TestimonialSlider items={testimonials} />
+      </ScrollReveal>
+
+      <ScrollReveal variant="up">
+        <ServiceAreaMap />
       </ScrollReveal>
 
       <ScrollReveal variant="up">

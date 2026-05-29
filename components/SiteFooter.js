@@ -49,7 +49,6 @@ export default function SiteFooter() {
             <div>
               <h3>Contact</h3>
               <ul className={styles.contactList}>
-                <li>{contact.owner}</li>
                 <li>
                   <a href={`tel:${contact.phone.replace(/\D/g, "")}`}>
                     {contact.phone}

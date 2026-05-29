@@ -6,7 +6,6 @@ import ProcessSteps from "@/components/ProcessSteps";
 import ScrollReveal from "@/components/ScrollReveal";
 import {
   aboutCopy,
-  team,
   heroImage,
   headerQuote,
   valueProposition,
@@ -115,33 +114,6 @@ export default function AboutPage() {
               >
                 <h3>{v.title}</h3>
                 <p>{v.text}</p>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </ScrollReveal>
-
-      <ScrollReveal as="section" className={shared.pageSection} delay={80}>
-        <div className="container">
-          <SectionHeading
-            eyebrow="Leadership"
-            title="Meet the Team"
-            description="The people behind every project."
-          />
-          <div className={shared.teamGrid}>
-            {team.map((member, index) => (
-              <ScrollReveal
-                as="article"
-                key={member.name}
-                delay={index * 100}
-                variant="scale"
-                className={shared.teamCard}
-              >
-                <div className={shared.teamPhoto}>
-                  <Image src={member.image} alt="" fill sizes="200px" />
-                </div>
-                <h3>{member.name}</h3>
-                <p>{member.role}</p>
               </ScrollReveal>
             ))}
           </div>

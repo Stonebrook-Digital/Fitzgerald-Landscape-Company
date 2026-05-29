@@ -2,7 +2,7 @@ import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import ContactForm from "@/components/ContactForm";
 import ScrollReveal from "@/components/ScrollReveal";
-import { contact, valueProposition, cta } from "@/lib/content";
+import { contact, siteName, valueProposition, cta } from "@/lib/content";
 import shared from "../shared.module.css";
 
 export const metadata = {
@@ -51,8 +51,7 @@ export default function ContactPage() {
               />
 
               <div className={shared.infoBlock}>
-                <h3>{contact.owner}</h3>
-                <p>Fitzgerald Landscape Co.</p>
+                <h3>{siteName}</h3>
               </div>
 
               <div className={shared.infoBlock}>
