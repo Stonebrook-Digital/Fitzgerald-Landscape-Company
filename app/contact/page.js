@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     q: "What areas do you serve?",
-    a: "We are based in Brooklyn and serve surrounding neighborhoods. Contact us to confirm availability for your address.",
+    a: "We are based in Woodbury, NJ and serve South Jersey and surrounding neighborhoods. Contact us to confirm availability for your address.",
   },
   {
     q: "Do you offer year-round maintenance?",

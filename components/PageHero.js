@@ -10,15 +10,10 @@ export default function PageHero({
   primaryCta,
   secondaryCta,
   quote,
-  sideImage,
   children,
 }) {
-  const isSplit = Boolean(quote && sideImage);
-
   return (
-    <section
-      className={`${styles.hero} ${styles[size]} ${isSplit ? styles.split : ""}`}
-    >
+    <section className={`${styles.hero} ${styles[size]}`}>
       <div className={styles.bg}>
         <Image
           src={image}
@@ -32,7 +27,7 @@ export default function PageHero({
       </div>
 
       <div className={`container ${styles.contentWrap}`}>
-        <div className={`${styles.layout} ${isSplit ? styles.layoutSplit : ""}`}>
+        <div className={styles.layout}>
           <div className={styles.main}>
             {subtitle && (
               <span className={`${styles.eyebrow} animate-fade-up`}>
@@ -67,20 +62,6 @@ export default function PageHero({
               </div>
             )}
           </div>
-
-          {isSplit && (
-            <div className={`${styles.side} animate-fade-up animate-delay-2`}>
-              <div className={styles.sideFrame}>
-                <Image
-                  src={sideImage}
-                  alt=""
-                  fill
-                  sizes="(max-width: 900px) 85vw, 360px"
-                  className={styles.sideImage}
-                />
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </section>

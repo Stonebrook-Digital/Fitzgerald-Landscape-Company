@@ -10,18 +10,17 @@ import ScrollReveal from "@/components/ScrollReveal";
 import Button from "@/components/Button";
 import {
   heroImage,
-  heroPortrait,
   headerQuote,
   valueProposition,
   pricing,
   testimonials,
-  galleryItems,
+  getFeaturedGalleryItems,
   cta,
 } from "@/lib/content";
 import styles from "./page.module.css";
 
 export default function HomePage() {
-  const previewImages = galleryItems.slice(0, 4);
+  const previewImages = getFeaturedGalleryItems();
 
   return (
     <>
@@ -30,7 +29,6 @@ export default function HomePage() {
         subtitle={valueProposition.eyebrow}
         image={heroImage}
         quote={headerQuote}
-        sideImage={heroPortrait}
         size="tall"
         primaryCta={{ href: cta.primaryHref, label: cta.primaryLabel }}
         secondaryCta={{ href: "/gallery", label: "View Gallery" }}

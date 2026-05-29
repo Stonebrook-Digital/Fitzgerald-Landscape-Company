@@ -107,7 +107,7 @@ export default function ContactForm() {
             type="tel"
             value={form.phone}
             onChange={handleChange}
-            placeholder="(000) 000-0000"
+            placeholder="(856) 381-3670"
           />
         </div>
         <div className={styles.field}>

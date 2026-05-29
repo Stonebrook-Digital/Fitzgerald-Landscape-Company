@@ -24,7 +24,7 @@ export const metadata = {
     default: siteName,
     template: `%s | ${siteName}`,
   },
-  description: `${valueProposition.text} ${siteName} — landscape design, installation, and maintenance in Brooklyn, NY.`,
+  description: `${valueProposition.text} ${siteName} — landscape design, installation, and maintenance in Woodbury, NJ.`,
 };
 
 export default function RootLayout({ children }) {

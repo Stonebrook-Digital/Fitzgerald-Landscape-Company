@@ -51,8 +51,8 @@ export default function TestimonialSlider({ items }) {
       <div className="container">
         <SectionHeading
           eyebrow="Reviews"
-          title="Trusted by Brooklyn Homeowners"
-          description="Real feedback from neighbors who've worked with our crew."
+          title="Trusted by South Jersey Homeowners"
+          description="Real feedback from neighbors across Woodbury and the surrounding area."
           align="center"
         />
 

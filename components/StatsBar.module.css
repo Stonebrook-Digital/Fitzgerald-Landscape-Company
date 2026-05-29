@@ -1,95 +1,86 @@
 .stats {
   background: var(--green-900);
-  padding: 3rem 0;
+  padding: 2.75rem 0;
+  overflow: hidden;
 }
 
-.carousel {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 6%,
+    black 94%,
+    transparent
+  );
 }
 
 .track {
-  position: relative;
-  width: 100%;
-  min-height: 5.5rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  width: max-content;
+  animation: marqueeLtr 50s linear infinite;
 }
 
-.slide {
-  position: absolute;
-  inset: 0;
+.item {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  opacity: 0;
-  transform: translateY(18px);
-  transition:
-    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
-  pointer-events: none;
-}
-
-.slideActive {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
+  flex-shrink: 0;
+  align-items: baseline;
+  gap: 0.65rem;
+  padding: 0 2.75rem;
+  white-space: nowrap;
 }
 
 .value {
-  display: block;
   font-family: var(--font-display);
-  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
   font-weight: 600;
   color: var(--gold-light);
   line-height: 1.1;
-  margin-bottom: 0.4rem;
 }
 
 .label {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.65);
 }
 
-.dots {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
+.separator {
+  margin-left: 0.5rem;
+  font-size: 0.45rem;
+  color: rgba(255, 255, 255, 0.25);
+  align-self: center;
 }
 
-.dots button {
-  width: 8px;
-  height: 8px;
-  padding: 0;
-  border: none;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.25);
-  cursor: pointer;
-  transition:
-    background var(--transition),
-    transform var(--transition);
-}
+@keyframes marqueeLtr {
+  from {
+    transform: translateX(-50%);
+  }
 
-.dots button:hover {
-  background: rgba(255, 255, 255, 0.45);
-}
-
-.dotActive {
-  background: var(--gold-light) !important;
-  transform: scale(1.2);
+  to {
+    transform: translateX(0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .slide {
-    transition: none;
+  .marquee {
+    mask-image: none;
+  }
+
+  .track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    gap: 1.25rem 0;
+  }
+
+  .item {
+    padding: 0 1.25rem;
+  }
+
+  .separator {
+    display: none;
   }
 }
