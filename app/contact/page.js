@@ -22,10 +22,6 @@ const faqs = [
     q: "Do you offer year-round maintenance?",
     a: "Absolutely. Our maintenance plans include lawn care, bed work, aeration, fertilization, and seasonal cleanups.",
   },
-  {
-    q: "When should I book seasonal services?",
-    a: "Spring services like sod and aeration book early. Fall leaf cleanups and winter snow contracts should be scheduled ahead of the season.",
-  },
 ];
 
 export default function ContactPage() {
