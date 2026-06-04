@@ -41,9 +41,10 @@
 }
 
 .body h3 {
-  font-family: var(--font-display);
+  font-family: var(--font-accent);
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 400;
+  letter-spacing: 0.03em;
   color: var(--green-900);
   margin-bottom: 0.6rem;
 }

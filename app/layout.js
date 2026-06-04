@@ -1,4 +1,5 @@
 import { Cormorant_Garamond, Outfit } from "next/font/google";
+import localFont from "next/font/local";
 import PromoBar from "@/components/PromoBar";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
@@ -19,6 +20,12 @@ const outfit = Outfit({
   display: "swap",
 });
 
+const arkhip = localFont({
+  src: "../public/fonts/Arkhip.otf",
+  variable: "--font-arkhip",
+  display: "swap",
+});
+
 export const metadata = {
   title: {
     default: siteName,
@@ -29,7 +36,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${outfit.variable}`}>
+    <html
+      lang="en"
+      className={`${cormorant.variable} ${outfit.variable} ${arkhip.variable}`}
+    >
       <body>
         <PromoBar />
         <SiteHeader />

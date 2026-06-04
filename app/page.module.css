@@ -47,9 +47,10 @@
 
 .introBadge strong {
   display: block;
-  font-family: var(--font-display);
+  font-family: var(--font-accent);
   font-size: 2.5rem;
-  font-weight: 700;
+  font-weight: 400;
+  letter-spacing: 0.04em;
   line-height: 1;
 }
 
@@ -138,8 +139,10 @@
   padding: 1rem;
   background: linear-gradient(to top, rgba(15, 36, 25, 0.7), transparent);
   color: var(--white);
-  font-family: var(--font-display);
+  font-family: var(--font-accent);
   font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
   opacity: 0;
   transition: opacity var(--transition);
 }

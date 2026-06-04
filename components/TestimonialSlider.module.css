@@ -53,9 +53,10 @@
 }
 
 .badgeLabel strong {
-  font-family: var(--font-display);
+  font-family: var(--font-accent);
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 400;
+  letter-spacing: 0.04em;
   color: var(--green-900);
   margin-right: 0.25rem;
 }
@@ -134,9 +135,11 @@
 }
 
 .author {
+  font-family: var(--font-accent);
   font-style: normal;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 1.05rem;
+  letter-spacing: 0.03em;
   color: var(--green-900);
 }
 

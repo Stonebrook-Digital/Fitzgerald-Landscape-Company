@@ -33,9 +33,10 @@
 }
 
 .inner h2 {
-  font-family: var(--font-display);
+  font-family: var(--font-accent);
   font-size: clamp(2rem, 4vw, 2.75rem);
-  font-weight: 600;
+  font-weight: 400;
+  letter-spacing: 0.03em;
   color: var(--white);
   margin-bottom: 1rem;
 }
