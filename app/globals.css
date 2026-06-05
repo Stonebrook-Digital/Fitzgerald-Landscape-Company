@@ -41,6 +41,16 @@ html.promo-hidden .promo-bar {
   pointer-events: none;
 }
 
+@media (max-width: 767px) {
+  :root {
+    --promo-h: 0px;
+  }
+
+  .promo-bar {
+    display: none;
+  }
+}
+
 html {
   scroll-behavior: smooth;
   height: 100%;

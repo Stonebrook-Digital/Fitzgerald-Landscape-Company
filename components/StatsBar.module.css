@@ -4,6 +4,12 @@
   overflow: hidden;
 }
 
+@media (max-width: 767px) {
+  .stats {
+    padding: 2rem 0;
+  }
+}
+
 .marquee {
   overflow: hidden;
   mask-image: linear-gradient(
@@ -18,7 +24,7 @@
 .track {
   display: flex;
   width: max-content;
-  animation: marqueeLtr 50s linear infinite;
+  animation: marqueeRtl 50s linear infinite;
 }
 
 .item {
@@ -54,13 +60,13 @@
   align-self: center;
 }
 
-@keyframes marqueeLtr {
+@keyframes marqueeRtl {
   from {
-    transform: translateX(-50%);
+    transform: translateX(0);
   }
 
   to {
-    transform: translateX(0);
+    transform: translateX(-50%);
   }
 }
 
