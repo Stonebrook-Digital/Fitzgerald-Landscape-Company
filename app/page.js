@@ -12,7 +12,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import Button from "@/components/Button";
 import {
   heroImage,
-  headerQuote,
+  hero,
   valueProposition,
   testimonials,
   getFeaturedGalleryItems,
@@ -26,28 +26,15 @@ export default function HomePage() {
   return (
     <>
       <PageHero
-        title="Outdoor Living, Crafted With Care"
-        subtitle={valueProposition.eyebrow}
+        title={hero.title}
         image={heroImage}
-        quote={headerQuote}
+        quote={hero.subhead}
         size="tall"
         primaryCta={{ href: cta.primaryHref, label: cta.primaryLabel }}
         secondaryCta={{ href: "/gallery", label: "View Gallery" }}
       />
 
       <StatsBar />
-
-      <ScrollReveal as="section" className={styles.section}>
-        <div className="container">
-          <div className={styles.valueProp}>
-            <SectionHeading
-              eyebrow={valueProposition.eyebrow}
-              title={valueProposition.title}
-              description={valueProposition.text}
-            />
-          </div>
-        </div>
-      </ScrollReveal>
 
       <ScrollReveal as="section" className={styles.sectionAlt} id="services" delay={80}>
         <div className="container">
