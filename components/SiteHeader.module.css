@@ -238,6 +238,9 @@
 
 .mobileCta {
   width: 100%;
+  max-width: 100%;
+  padding-inline: 1.25rem;
+  white-space: nowrap;
 }
 
 @media (min-width: 900px) {

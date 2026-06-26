@@ -153,7 +153,7 @@ export default function SiteHeader() {
             ))}
           </ul>
           <Button href={cta.primaryHref} variant="gold" size="lg" className={styles.mobileCta}>
-            {cta.primaryLabel}
+            {cta.mobileLabel}
           </Button>
         </nav>
       </div>

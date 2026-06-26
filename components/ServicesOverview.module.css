@@ -1,13 +1,5 @@
 .wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 4rem;
-}
-
-.category {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  width: 100%;
 }
 
 .grid {

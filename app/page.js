@@ -41,9 +41,9 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Services"
             title="Complete Landscape Care"
-            description="From year-round maintenance to seasonal installations—we handle every aspect of your outdoor space."
+            description="From softscaping and hardscaping to mowing, irrigation, lighting, and winter snow and ice management."
           />
-          <ServicesOverview limitPerCategory={3} />
+          <ServicesOverview />
           <ScrollReveal delay={200} className={styles.centerCta}>
             <Button href="/services" variant="primary">
               View All Services

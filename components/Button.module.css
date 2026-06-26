@@ -3,6 +3,9 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  max-width: 100%;
+  box-sizing: border-box;
+  text-align: center;
   font-family: var(--font-body);
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -82,6 +85,14 @@
 
 .gold:hover {
   background: var(--gold-light);
+}
+
+@media (max-width: 480px) {
+  .lg {
+    padding: 1rem 1.35rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+  }
 }
 
 .ghost {

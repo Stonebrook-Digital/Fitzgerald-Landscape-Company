@@ -26,8 +26,8 @@ export default function ServicesPage() {
         <div className="container">
           <SectionHeading
             eyebrow="Overview"
-            title="Year-Round & Seasonal Care"
-            description={valueProposition.text}
+            title="Our Services"
+            description="Professional landscape care for residential and commercial properties across Gloucester County."
           />
           <ServicesOverview />
         </div>
