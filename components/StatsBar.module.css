@@ -24,7 +24,7 @@
 .track {
   display: flex;
   width: max-content;
-  animation: marqueeRtl 50s linear infinite;
+  animation: marqueeLtr 50s linear infinite;
 }
 
 .item {
@@ -60,13 +60,13 @@
   align-self: center;
 }
 
-@keyframes marqueeRtl {
+@keyframes marqueeLtr {
   from {
-    transform: translateX(0);
+    transform: translateX(-50%);
   }
 
   to {
-    transform: translateX(-50%);
+    transform: translateX(0);
   }
 }
 
