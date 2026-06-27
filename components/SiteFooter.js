@@ -22,10 +22,10 @@ export default function SiteFooter() {
             <div className={styles.brand}>
               <Link href="/">
                 <Image
-                  src="/FFF_Fitzgerald_LO-01.jpg"
+                  src="/FFF_Fitzgerald_LO.png"
                   alt={siteName}
-                  width={180}
-                  height={50}
+                  width={200}
+                  height={56}
                   className={styles.logo}
                 />
               </Link>
