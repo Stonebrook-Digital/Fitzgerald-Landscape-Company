@@ -38,7 +38,15 @@ export default function SiteFooter() {
             <div>
               <h3>Navigation</h3>
               <ul>
-                {navLinks.map((link) => (
+                {navLinks.slice(0, 2).map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href}>{link.label}</Link>
+                  </li>
+                ))}
+                <li>
+                  <Link href="/services">Services</Link>
+                </li>
+                {navLinks.slice(2).map((link) => (
                   <li key={link.href}>
                     <Link href={link.href}>{link.label}</Link>
                   </li>

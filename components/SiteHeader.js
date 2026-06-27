@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { navLinks, siteName, cta } from "@/lib/content";
+import { navLinks, services, siteName, cta, getServiceHref } from "@/lib/content";
 import Button from "./Button";
 import styles from "./SiteHeader.module.css";
 
@@ -15,16 +15,23 @@ const SCROLL_HIDE_PROMO = 140;
 export default function SiteHeader() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [atTop, setAtTop] = useState(true);
   const [scrolled, setScrolled] = useState(false);
   const [compact, setCompact] = useState(false);
   const [prevPathname, setPrevPathname] = useState(pathname);
+  const dropdownRef = useRef(null);
+
+  const isServicesActive = pathname === "/services" || pathname.startsWith("/services/");
 
   if (pathname !== prevPathname) {
     setPrevPathname(pathname);
     if (menuOpen) {
       setMenuOpen(false);
     }
+    setMobileServicesOpen(false);
+    setServicesOpen(false);
   }
 
   useEffect(() => {
@@ -77,6 +84,26 @@ export default function SiteHeader() {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    if (!servicesOpen) return;
+
+    const onPointerDown = (event) => {
+      if (dropdownRef.current?.contains(event.target)) return;
+      setServicesOpen(false);
+    };
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setServicesOpen(false);
+    };
+
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [servicesOpen]);
+
   return (
     <header
       className={`${styles.header} ${atTop ? styles.atTop : ""} ${scrolled ? styles.scrolled : ""} ${compact ? styles.compact : ""} ${menuOpen ? styles.menuOpen : ""}`}
@@ -96,13 +123,69 @@ export default function SiteHeader() {
 
           <nav className={styles.nav} aria-label="Main navigation">
             <ul className={styles.navList}>
-              {navLinks.map((link) => (
+              {navLinks.slice(0, 2).map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className={
-                      pathname === link.href ? styles.active : undefined
-                    }
+                    className={pathname === link.href ? styles.active : undefined}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+
+              <li
+                className={styles.dropdown}
+                ref={dropdownRef}
+                onMouseEnter={() => setServicesOpen(true)}
+                onMouseLeave={() => setServicesOpen(false)}
+              >
+                <button
+                  type="button"
+                  className={`${styles.dropdownToggle} ${isServicesActive ? styles.active : ""}`}
+                  aria-expanded={servicesOpen}
+                  aria-haspopup="true"
+                  onClick={() => setServicesOpen((open) => !open)}
+                >
+                  Services
+                  <span className={styles.chevron} aria-hidden="true" />
+                </button>
+                <ul
+                  className={`${styles.dropdownMenu} ${servicesOpen ? styles.dropdownMenuOpen : ""}`}
+                  role="menu"
+                >
+                  <li role="none">
+                    <Link
+                      href="/services"
+                      role="menuitem"
+                      className={pathname === "/services" ? styles.active : undefined}
+                      onClick={() => setServicesOpen(false)}
+                    >
+                      All Services
+                    </Link>
+                  </li>
+                  {services.map((service) => (
+                    <li key={service.id} role="none">
+                      <Link
+                        href={getServiceHref(service.id)}
+                        role="menuitem"
+                        className={
+                          pathname === getServiceHref(service.id) ? styles.active : undefined
+                        }
+                        onClick={() => setServicesOpen(false)}
+                      >
+                        {service.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+
+              {navLinks.slice(2).map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={pathname === link.href ? styles.active : undefined}
                   >
                     {link.label}
                   </Link>
@@ -139,18 +222,73 @@ export default function SiteHeader() {
       >
         <nav aria-label="Mobile navigation">
           <ul>
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className={
-                    pathname === link.href ? styles.active : undefined
-                  }
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+            <li>
+              <Link
+                href="/"
+                className={pathname === "/" ? styles.active : undefined}
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/about"
+                className={pathname === "/about" ? styles.active : undefined}
+              >
+                About
+              </Link>
+            </li>
+            <li className={styles.mobileDropdown}>
+              <button
+                type="button"
+                className={`${styles.mobileDropdownToggle} ${isServicesActive ? styles.active : ""}`}
+                aria-expanded={mobileServicesOpen}
+                onClick={() => setMobileServicesOpen((open) => !open)}
+              >
+                Services
+                <span className={styles.chevron} aria-hidden="true" />
+              </button>
+              {mobileServicesOpen && (
+                <ul className={styles.mobileSubmenu}>
+                  <li>
+                    <Link
+                      href="/services"
+                      className={pathname === "/services" ? styles.active : undefined}
+                    >
+                      All Services
+                    </Link>
+                  </li>
+                  {services.map((service) => (
+                    <li key={service.id}>
+                      <Link
+                        href={getServiceHref(service.id)}
+                        className={
+                          pathname === getServiceHref(service.id) ? styles.active : undefined
+                        }
+                      >
+                        {service.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+            <li>
+              <Link
+                href="/gallery"
+                className={pathname === "/gallery" ? styles.active : undefined}
+              >
+                Gallery
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/contact"
+                className={pathname === "/contact" ? styles.active : undefined}
+              >
+                Contact
+              </Link>
+            </li>
           </ul>
           <Button href={cta.primaryHref} variant="gold" size="lg" className={styles.mobileCta}>
             {cta.mobileLabel}

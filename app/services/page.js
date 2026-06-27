@@ -1,10 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import ServicesOverview from "@/components/ServicesOverview";
 import CTABand from "@/components/CTABand";
 import ScrollReveal from "@/components/ScrollReveal";
-import { valueProposition, cta, services } from "@/lib/content";
+import { valueProposition, cta, services, getServiceHref } from "@/lib/content";
 import shared from "../shared.module.css";
 
 export const metadata = {
@@ -52,7 +53,9 @@ export default function ServicesPage() {
                 <Image src={service.image} alt="" fill sizes="50vw" />
               </div>
               <div className={shared.serviceContent}>
-                <h3>{service.title}</h3>
+                <h3>
+                  <Link href={getServiceHref(service.id)}>{service.title}</Link>
+                </h3>
                 <p>{service.description}</p>
                 <ul className={shared.serviceList}>
                   {service.items.map((item) => (

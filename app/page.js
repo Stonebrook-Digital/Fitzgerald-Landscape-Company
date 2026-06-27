@@ -7,6 +7,7 @@ import StatsBar from "@/components/StatsBar";
 import TestimonialSlider from "@/components/TestimonialSlider";
 import ServiceAreaMap from "@/components/ServiceAreaMap";
 import CTABand from "@/components/CTABand";
+import TrustedBrandsCarousel from "@/components/TrustedBrandsCarousel";
 import PricingSection from "@/components/PricingSection";
 import ScrollReveal from "@/components/ScrollReveal";
 import Button from "@/components/Button";
@@ -50,6 +51,10 @@ export default function HomePage() {
             </Button>
           </ScrollReveal>
         </div>
+      </ScrollReveal>
+
+      <ScrollReveal variant="in">
+        <TrustedBrandsCarousel />
       </ScrollReveal>
 
       <ScrollReveal as="section" delay={80}>
