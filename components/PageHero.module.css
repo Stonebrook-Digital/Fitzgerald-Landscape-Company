@@ -24,7 +24,11 @@
 
 .bgImage {
   object-fit: cover;
-  object-position: center;
+  object-position: center 65%;
+}
+
+.hero.tall .bgImage {
+  object-position: center 70%;
 }
 
 .overlay {

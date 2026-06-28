@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import GoogleIcon from "@/components/GoogleIcon";
 import StarRating from "@/components/StarRating";
@@ -10,7 +10,31 @@ const AUTO_MS = 8000;
 
 export default function ReviewCardStack({ items }) {
   const [active, setActive] = useState(0);
+  const [viewportHeight, setViewportHeight] = useState(null);
+  const cardRefs = useRef([]);
   const count = items.length;
+
+  const measureActive = useCallback(() => {
+    const el = cardRefs.current[active];
+    if (el) {
+      setViewportHeight(el.offsetHeight);
+    }
+  }, [active]);
+
+  useEffect(() => {
+    measureActive();
+    window.addEventListener("resize", measureActive);
+    return () => window.removeEventListener("resize", measureActive);
+  }, [measureActive]);
+
+  useEffect(() => {
+    const el = cardRefs.current[active];
+    if (!el || typeof ResizeObserver === "undefined") return;
+
+    const observer = new ResizeObserver(() => measureActive());
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [active, measureActive]);
 
   useEffect(() => {
     if (count < 2) return;
@@ -27,7 +51,10 @@ export default function ReviewCardStack({ items }) {
 
   return (
     <div className={styles.carousel}>
-      <div className={styles.viewport}>
+      <div
+        className={styles.viewport}
+        style={viewportHeight ? { height: `${viewportHeight}px` } : undefined}
+      >
         <div
           className={styles.track}
           style={{ transform: `translate3d(-${active * 100}%, 0, 0)` }}
@@ -36,6 +63,9 @@ export default function ReviewCardStack({ items }) {
           {items.map((item, index) => (
             <article
               key={item.id ?? item.author}
+              ref={(el) => {
+                cardRefs.current[index] = el;
+              }}
               className={styles.card}
               aria-hidden={index !== active}
             >
@@ -55,6 +85,7 @@ export default function ReviewCardStack({ items }) {
                     fill
                     sizes="(max-width: 900px) 100vw, 600px"
                     className={styles.reviewImageImg}
+                    onLoad={measureActive}
                   />
                 </div>
               )}

@@ -216,9 +216,9 @@ export default function SiteHeader() {
 
       <div
         id="mobile-menu"
-        className={styles.mobileMenu}
-        hidden={!menuOpen}
+        className={`${styles.mobileMenu} ${menuOpen ? styles.mobileMenuOpen : ""}`}
         aria-hidden={!menuOpen}
+        inert={!menuOpen || undefined}
       >
         <nav aria-label="Mobile navigation">
           <ul>

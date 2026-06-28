@@ -22,20 +22,30 @@ function BrandLogo({ brand }) {
         fill
         sizes="(max-width: 640px) 140px, 180px"
         className={styles.logoImg}
+        style={{ transform: `scale(${brand.logoScale ?? 1})` }}
       />
     </div>
   );
 }
 
-export default function TrustedBrandsCarousel() {
+export default function TrustedBrandsCarousel({ compact = false }) {
   const { eyebrow, title, description, brands } = trustedBrands;
   const track = [...brands, ...brands];
 
   return (
-    <section className={styles.section} aria-label="Trusted brands">
-      <div className="container">
-        <SectionHeading eyebrow={eyebrow} title={title} description={description} />
-      </div>
+    <section
+      className={`${styles.section} ${compact ? styles.sectionCompact : ""}`}
+      aria-label="Trusted brands"
+    >
+      {compact ? (
+        <div className="container">
+          <p className={styles.compactHeading}>{title}</p>
+        </div>
+      ) : (
+        <div className="container">
+          <SectionHeading eyebrow={eyebrow} title={title} description={description} />
+        </div>
+      )}
 
       <div className={styles.marquee} aria-hidden="true">
         <div className={styles.track}>

@@ -4,6 +4,34 @@
   overflow: hidden;
 }
 
+.sectionCompact {
+  padding: 1.35rem 0 1.5rem;
+  background: var(--white);
+  border-bottom: 1px solid var(--cream-dark);
+}
+
+.compactHeading {
+  margin-bottom: 0.85rem;
+  text-align: center;
+  font-family: var(--font-accent);
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green-900);
+}
+
+.sectionCompact .track {
+  gap: 2.25rem;
+  padding: 0.15rem 0;
+  animation-duration: 50s;
+}
+
+.sectionCompact .brand {
+  width: 132px;
+  height: 52px;
+}
+
 .marquee {
   position: relative;
   width: 100%;
@@ -40,18 +68,23 @@
   width: 180px;
   height: 72px;
   padding: 0 0.25rem;
+  overflow: visible;
 }
 
 .logoSlot {
   position: relative;
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
 }
 
 .logoImg {
   object-fit: contain;
   object-position: center;
-  opacity: 0.82;
+  opacity: 0.88;
   transition:
     opacity 0.35s ease,
     transform 0.35s cubic-bezier(0.33, 1, 0.68, 1);
@@ -59,7 +92,6 @@
 
 .brand:hover .logoImg {
   opacity: 1;
-  transform: scale(1.04);
 }
 
 .placeholder {
@@ -98,6 +130,24 @@
 }
 
 @media (max-width: 640px) {
+  .sectionCompact {
+    padding: 1.15rem 0 1.25rem;
+  }
+
+  .sectionCompact .compactHeading {
+    margin-bottom: 0.65rem;
+  }
+
+  .sectionCompact .track {
+    gap: 1.75rem;
+    animation-duration: 40s;
+  }
+
+  .sectionCompact .brand {
+    width: 108px;
+    height: 46px;
+  }
+
   .track {
     gap: 2rem;
     animation-duration: 45s;

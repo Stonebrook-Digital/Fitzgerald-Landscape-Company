@@ -3,12 +3,10 @@ import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import ServicesOverview from "@/components/ServicesOverview";
-import StatsBar from "@/components/StatsBar";
 import TestimonialSlider from "@/components/TestimonialSlider";
 import ServiceAreaMap from "@/components/ServiceAreaMap";
 import CTABand from "@/components/CTABand";
 import TrustedBrandsCarousel from "@/components/TrustedBrandsCarousel";
-import PricingSection from "@/components/PricingSection";
 import ScrollReveal from "@/components/ScrollReveal";
 import Button from "@/components/Button";
 import {
@@ -35,7 +33,11 @@ export default function HomePage() {
         secondaryCta={{ href: "/gallery", label: "View Gallery" }}
       />
 
-      <StatsBar />
+      <TrustedBrandsCarousel compact />
+
+      <ScrollReveal variant="in">
+        <TestimonialSlider items={testimonials} />
+      </ScrollReveal>
 
       <ScrollReveal as="section" className={styles.sectionAlt} id="services" delay={80}>
         <div className="container">
@@ -51,14 +53,6 @@ export default function HomePage() {
             </Button>
           </ScrollReveal>
         </div>
-      </ScrollReveal>
-
-      <ScrollReveal variant="in">
-        <TrustedBrandsCarousel />
-      </ScrollReveal>
-
-      <ScrollReveal as="section" delay={80}>
-        <PricingSection />
       </ScrollReveal>
 
       <ScrollReveal as="section" className={styles.sectionAlt} delay={80}>
@@ -96,10 +90,6 @@ export default function HomePage() {
         </div>
       </ScrollReveal>
 
-      <ScrollReveal variant="in">
-        <TestimonialSlider items={testimonials} />
-      </ScrollReveal>
-
       <ScrollReveal variant="up">
         <ServiceAreaMap />
       </ScrollReveal>
@@ -109,6 +99,7 @@ export default function HomePage() {
           title="Ready to Transform Your Property?"
           description={valueProposition.text}
           primaryLabel={cta.primaryLabel}
+          withForm
         />
       </ScrollReveal>
     </>
