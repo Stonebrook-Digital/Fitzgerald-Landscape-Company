@@ -37,11 +37,7 @@ export default function TrustedBrandsCarousel({ compact = false }) {
       className={`${styles.section} ${compact ? styles.sectionCompact : ""}`}
       aria-label="Trusted brands"
     >
-      {compact ? (
-        <div className="container">
-          <p className={styles.compactHeading}>{title}</p>
-        </div>
-      ) : (
+      {compact ? null : (
         <div className="container">
           <SectionHeading eyebrow={eyebrow} title={title} description={description} />
         </div>

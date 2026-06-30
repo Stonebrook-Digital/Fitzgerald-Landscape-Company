@@ -5,20 +5,9 @@
 }
 
 .sectionCompact {
-  padding: 1.35rem 0 1.5rem;
+  padding: 1rem 0 1.15rem;
   background: var(--white);
   border-bottom: 1px solid var(--cream-dark);
-}
-
-.compactHeading {
-  margin-bottom: 0.85rem;
-  text-align: center;
-  font-family: var(--font-accent);
-  font-size: 0.95rem;
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--green-900);
 }
 
 .sectionCompact .track {
@@ -131,11 +120,7 @@
 
 @media (max-width: 640px) {
   .sectionCompact {
-    padding: 1.15rem 0 1.25rem;
-  }
-
-  .sectionCompact .compactHeading {
-    margin-bottom: 0.65rem;
+    padding: 0.85rem 0 1rem;
   }
 
   .sectionCompact .track {

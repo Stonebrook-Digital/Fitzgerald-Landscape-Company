@@ -6,7 +6,6 @@
 .layout {
   display: grid;
   gap: 1.5rem;
-  margin-top: 3rem;
   min-width: 0;
 }
 
@@ -24,7 +23,7 @@
   box-shadow: var(--shadow-lg);
 }
 
-.summaryLink {
+.summaryInner {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,15 +37,6 @@
     var(--green-950) 100%
   );
   color: var(--white);
-  text-decoration: none;
-  transition:
-    transform 0.45s cubic-bezier(0.33, 1, 0.68, 1),
-    box-shadow 0.45s ease;
-}
-
-.summaryLink:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 24px 48px rgba(15, 36, 25, 0.25);
 }
 
 .summaryHeader {
@@ -96,14 +86,52 @@
   margin-top: 0.75rem;
   padding-top: 1.25rem;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
-  font-size: 0.88rem;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.55);
+  font-family: var(--font-accent);
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.reviewsColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  width: 100%;
 }
 
 .carousel {
   width: 100%;
   min-width: 0;
+}
+
+.moreReviewsBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+  padding: 0.85rem 1.75rem;
+  background: var(--green-800);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(26, 61, 46, 0.2);
+  transition:
+    background 0.35s ease,
+    transform 0.35s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.moreReviewsBtn:hover {
+  background: var(--green-700);
+  transform: translateY(-2px);
 }
 
 .viewport {
@@ -327,7 +355,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .summaryLink {
+  .moreReviewsBtn {
     transition: none;
   }
 }

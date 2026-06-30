@@ -1,4 +1,3 @@
-import SectionHeading from "@/components/SectionHeading";
 import GoogleIcon from "@/components/GoogleIcon";
 import StarRating from "@/components/StarRating";
 import ReviewCardStack from "@/components/ReviewCardStack";
@@ -13,20 +12,9 @@ export default function TestimonialSlider({ items }) {
       aria-label="Google reviews"
     >
       <div className="container">
-        <SectionHeading
-          eyebrow="Reviews"
-          title="Trusted by South Jersey Homeowners"
-          description="Real feedback from neighbors across Woodbury and the surrounding area."
-          align="center"
-        />
-
         <div className={styles.layout}>
           <aside className={styles.summary}>
-            <a
-              href={googleReviews.href}
-              className={styles.summaryLink}
-              aria-label={`${googleReviews.rating} stars from ${googleReviews.count} Google reviews`}
-            >
+            <div className={styles.summaryInner}>
               <div className={styles.summaryHeader}>
                 <GoogleIcon size={32} />
                 <span className={styles.summaryLabel}>Google Reviews</span>
@@ -43,14 +31,21 @@ export default function TestimonialSlider({ items }) {
                 Based on {googleReviews.count} reviews
               </p>
 
-              <p className={styles.summaryNote}>
-                Neighbors across Woodbury and Gloucester County trust our crew
-                for landscaping, hardscaping, and year-round property care.
-              </p>
-            </a>
+              <p className={styles.summaryNote}>{googleReviews.tagline}</p>
+            </div>
           </aside>
 
-          <ReviewCardStack items={items} />
+          <div className={styles.reviewsColumn}>
+            <ReviewCardStack items={items} />
+            <a
+              href={googleReviews.externalHref}
+              className={styles.moreReviewsBtn}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {googleReviews.moreLabel}
+            </a>
+          </div>
         </div>
       </div>
     </section>

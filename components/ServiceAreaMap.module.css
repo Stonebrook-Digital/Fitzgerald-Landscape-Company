@@ -3,10 +3,31 @@
   background: var(--cream);
 }
 
+.sectionTitle {
+  font-family: var(--font-accent);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  line-height: 1.15;
+  text-align: center;
+  color: var(--green-900);
+  margin-bottom: 1rem;
+}
+
+.areaHeading {
+  max-width: 52rem;
+  margin: 0 auto 2.25rem;
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 2.1vw, 1.2rem);
+  font-weight: 500;
+  line-height: 1.75;
+  text-align: center;
+  color: var(--green-800);
+}
+
 .mapShell {
   display: grid;
   gap: 1.5rem;
-  margin-top: 2.5rem;
 }
 
 @media (min-width: 900px) {
@@ -85,32 +106,12 @@
   box-shadow: var(--shadow);
 }
 
-.legendBadge {
-  display: inline-flex;
-  align-self: flex-start;
-  padding: 0.55rem 1rem;
-  border-radius: 999px;
-  background: var(--green-900);
-  color: var(--gold-light);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.legendCopy {
-  font-family: var(--font-accent);
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 400;
-  letter-spacing: 0.03em;
-  line-height: 1.25;
-  color: var(--green-900);
-}
-
 .legendNote {
+  margin: 0;
   color: var(--slate);
-  font-size: 0.92rem;
+  font-size: 1rem;
   line-height: 1.65;
+  text-align: center;
 }
 
 .legendNote a {

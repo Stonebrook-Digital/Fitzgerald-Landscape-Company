@@ -1,4 +1,3 @@
-import SectionHeading from "@/components/SectionHeading";
 import { serviceArea, contact } from "@/lib/content";
 import styles from "./ServiceAreaMap.module.css";
 
@@ -20,11 +19,8 @@ export default function ServiceAreaMap() {
   return (
     <section className={styles.section} aria-label="Service area">
       <div className="container">
-        <SectionHeading
-          eyebrow={serviceArea.eyebrow}
-          title={serviceArea.title}
-          description={serviceArea.description}
-        />
+        <h2 className={styles.sectionTitle}>{serviceArea.title}</h2>
+        <p className={styles.areaHeading}>{serviceArea.copy}</p>
 
         <div className={styles.mapShell}>
           <div className={styles.mapFrame}>
@@ -42,8 +38,6 @@ export default function ServiceAreaMap() {
           </div>
 
           <aside className={styles.legend}>
-            <p className={styles.legendBadge}>{serviceArea.tagline}</p>
-            <p className={styles.legendCopy}>{serviceArea.subtext}</p>
             <p className={styles.legendNote}>
               Questions about your area? Call{" "}
               <a href={`tel:${contact.phone.replace(/\D/g, "")}`}>
