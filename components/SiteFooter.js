@@ -8,7 +8,6 @@ import {
   headerQuote,
   cta,
 } from "@/lib/content";
-import FooterNewsletter from "./FooterNewsletter";
 import styles from "./SiteFooter.module.css";
 
 export default function SiteFooter() {
@@ -71,14 +70,6 @@ export default function SiteFooter() {
               <Link href={cta.primaryHref} className={styles.footerCta}>
                 {cta.primaryLabel}
               </Link>
-            </div>
-
-            <div>
-              <h3>Stay Updated</h3>
-              <p className={styles.newsletterText}>
-                Seasonal tips, promotions, and project highlights from our crew.
-              </p>
-              <FooterNewsletter />
             </div>
           </div>
         </div>

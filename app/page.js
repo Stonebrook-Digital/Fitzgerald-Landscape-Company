@@ -27,9 +27,7 @@ export default function HomePage() {
 
       <TrustedBrandsCarousel compact />
 
-      <ScrollReveal variant="in">
-        <TestimonialSlider items={testimonials} />
-      </ScrollReveal>
+      <TestimonialSlider items={testimonials} />
 
       <ScrollReveal as="section" className={styles.sectionAlt} id="services" delay={80}>
         <div className="container">

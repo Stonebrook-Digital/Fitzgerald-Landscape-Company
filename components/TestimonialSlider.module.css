@@ -253,6 +253,31 @@
   word-break: break-word;
 }
 
+.cardActive .quote,
+.cardActive .cardFooter {
+  animation: reviewTextIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.cardActive .quote {
+  animation-delay: 0.1s;
+}
+
+.cardActive .cardFooter {
+  animation-delay: 0.22s;
+}
+
+@keyframes reviewTextIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .reviewImage {
   position: relative;
   aspect-ratio: 16 / 10;
@@ -357,5 +382,10 @@
 @media (prefers-reduced-motion: reduce) {
   .moreReviewsBtn {
     transition: none;
+  }
+
+  .cardActive .quote,
+  .cardActive .cardFooter {
+    animation: none;
   }
 }

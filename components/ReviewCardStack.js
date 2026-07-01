@@ -66,7 +66,7 @@ export default function ReviewCardStack({ items }) {
               ref={(el) => {
                 cardRefs.current[index] = el;
               }}
-              className={styles.card}
+              className={`${styles.card} ${index === active ? styles.cardActive : ""}`}
               aria-hidden={index !== active}
             >
               <span className={styles.quoteMark} aria-hidden="true">
