@@ -217,3 +217,70 @@
   background: rgba(255, 255, 255, 0.1);
   border-color: var(--white);
 }
+
+.formLight .formField label {
+  color: var(--green-800);
+}
+
+.formLight .formField input,
+.formLight .formField textarea {
+  border: 2px solid var(--cream-dark);
+  background: var(--white);
+  color: var(--charcoal);
+}
+
+.formLight .formField input::placeholder,
+.formLight .formField textarea::placeholder {
+  color: var(--slate);
+  opacity: 0.55;
+}
+
+.formLight .formField input:focus,
+.formLight .formField textarea:focus {
+  border-color: var(--green-600);
+  background: var(--white);
+  box-shadow: 0 0 0 4px rgba(61, 122, 95, 0.15);
+}
+
+.formLight .formError {
+  color: #b33;
+}
+
+.formLight .formSubmit {
+  background: var(--green-800);
+  color: var(--white);
+  box-shadow: 0 8px 24px rgba(26, 61, 46, 0.25);
+}
+
+.formLight .formSubmit:hover {
+  background: var(--green-700);
+}
+
+.formSuccessLight {
+  background: var(--green-50);
+  border-color: var(--green-100);
+}
+
+.formSuccessLight h3 {
+  color: var(--green-900);
+}
+
+.formSuccessLight p {
+  color: var(--slate) !important;
+}
+
+.formSuccessLight .formSuccessIcon {
+  background: var(--green-800);
+  color: var(--white);
+}
+
+.formSuccessLight button {
+  border-color: var(--green-800);
+  color: var(--green-800);
+}
+
+.formSuccessLight button:hover {
+  background: var(--green-800);
+  border-color: var(--green-800);
+  color: var(--white);
+}

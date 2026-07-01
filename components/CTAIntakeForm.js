@@ -11,7 +11,11 @@ const initial = {
   message: "",
 };
 
-export default function CTAIntakeForm({ submitLabel = "Request a Free Estimate" }) {
+export default function CTAIntakeForm({
+  submitLabel = "Request a Free Estimate",
+  theme = "dark",
+}) {
+  const isLight = theme === "light";
   const [form, setForm] = useState(initial);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
@@ -46,7 +50,10 @@ export default function CTAIntakeForm({ submitLabel = "Request a Free Estimate" 
 
   if (submitted) {
     return (
-      <div className={styles.formSuccess} role="status">
+      <div
+        className={`${styles.formSuccess} ${isLight ? styles.formSuccessLight : ""}`}
+        role="status"
+      >
         <div className={styles.formSuccessIcon} aria-hidden="true">
           ✓
         </div>
@@ -63,7 +70,11 @@ export default function CTAIntakeForm({ submitLabel = "Request a Free Estimate" 
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit} noValidate>
+    <form
+      className={`${styles.form} ${isLight ? styles.formLight : ""}`}
+      onSubmit={handleSubmit}
+      noValidate
+    >
       <div className={styles.formRow}>
         <div className={styles.formField}>
           <label htmlFor="cta-name">Name</label>
