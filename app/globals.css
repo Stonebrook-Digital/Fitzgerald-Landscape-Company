@@ -97,13 +97,15 @@ main {
 
 .container {
   width: min(1200px, 92vw);
+  max-width: 100%;
   margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2rem);
 }
 
 @media (max-width: 767px) {
   .container {
     width: 100%;
-    padding-inline: 1.25rem;
+    padding-inline: 1.5rem;
   }
 }
 
