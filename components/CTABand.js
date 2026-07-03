@@ -8,8 +8,8 @@ export default function CTABand({
   description,
   primaryHref = cta.primaryHref,
   primaryLabel = cta.primaryLabel,
-  secondaryHref = "/gallery",
-  secondaryLabel = "View Gallery",
+  secondaryHref = "/contact",
+  secondaryLabel = "Contact Us",
   withForm = false,
 }) {
   return (

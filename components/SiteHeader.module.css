@@ -68,6 +68,10 @@
   height: 42px;
 }
 
+.menuOpen .logoImg {
+  filter: brightness(0) invert(1);
+}
+
 .nav {
   display: none;
 }

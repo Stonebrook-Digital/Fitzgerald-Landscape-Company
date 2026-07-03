@@ -123,7 +123,7 @@ export default function SiteHeader() {
 
           <nav className={styles.nav} aria-label="Main navigation">
             <ul className={styles.navList}>
-              {navLinks.slice(0, 2).map((link) => (
+              {navLinks.slice(0, 1).map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -181,7 +181,7 @@ export default function SiteHeader() {
                 </ul>
               </li>
 
-              {navLinks.slice(2).map((link) => (
+              {navLinks.slice(1).map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -230,14 +230,6 @@ export default function SiteHeader() {
                 Home
               </Link>
             </li>
-            <li>
-              <Link
-                href="/about"
-                className={pathname === "/about" ? styles.active : undefined}
-              >
-                About
-              </Link>
-            </li>
             <li className={styles.mobileDropdown}>
               <button
                 type="button"
@@ -272,14 +264,6 @@ export default function SiteHeader() {
                   ))}
                 </ul>
               )}
-            </li>
-            <li>
-              <Link
-                href="/gallery"
-                className={pathname === "/gallery" ? styles.active : undefined}
-              >
-                Gallery
-              </Link>
             </li>
             <li>
               <Link

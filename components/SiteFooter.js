@@ -1,13 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import {
-  navLinks,
-  siteName,
-  contact,
-  valueProposition,
-  headerQuote,
-  cta,
-} from "@/lib/content";
+import { siteName, contact, cta } from "@/lib/content";
 import styles from "./SiteFooter.module.css";
 
 export default function SiteFooter() {
@@ -28,29 +21,6 @@ export default function SiteFooter() {
                   className={styles.logo}
                 />
               </Link>
-              <p>{valueProposition.text}</p>
-              <blockquote className={styles.quote}>
-                <p>{headerQuote}</p>
-              </blockquote>
-            </div>
-
-            <div>
-              <h3>Navigation</h3>
-              <ul>
-                {navLinks.slice(0, 2).map((link) => (
-                  <li key={link.href}>
-                    <Link href={link.href}>{link.label}</Link>
-                  </li>
-                ))}
-                <li>
-                  <Link href="/services">Services</Link>
-                </li>
-                {navLinks.slice(2).map((link) => (
-                  <li key={link.href}>
-                    <Link href={link.href}>{link.label}</Link>
-                  </li>
-                ))}
-              </ul>
             </div>
 
             <div>
