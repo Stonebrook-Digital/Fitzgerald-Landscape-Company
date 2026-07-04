@@ -5,7 +5,10 @@ import SectionHeading from "@/components/SectionHeading";
 import { trustedBrands } from "@/lib/content";
 import styles from "./TrustedBrandsCarousel.module.css";
 
-function BrandLogo({ brand }) {
+const BASE_LOGO_HEIGHT = 40;
+const SIZE_BOOST = 1.1025;
+
+function BrandLogo({ brand, compact }) {
   if (!brand.logo) {
     return (
       <span className={styles.placeholder} aria-label={`${brand.name} logo placeholder`}>
@@ -14,17 +17,23 @@ function BrandLogo({ brand }) {
     );
   }
 
+  const logoHeight = Math.round(
+    (compact ? BASE_LOGO_HEIGHT : 50) * (brand.logoScale ?? 1) * SIZE_BOOST
+  );
+
   return (
-    <div className={styles.logoSlot}>
-      <Image
-        src={brand.logo}
-        alt={brand.name}
-        fill
-        sizes="(max-width: 640px) 140px, 180px"
-        className={styles.logoImg}
-        style={{ transform: `scale(${brand.logoScale ?? 1})` }}
-      />
-    </div>
+    <Image
+      src={brand.logo}
+      alt={brand.name}
+      width={240}
+      height={96}
+      className={styles.logoImg}
+      style={{
+        height: `${logoHeight}px`,
+        width: "auto",
+        transform: brand.logoOffsetY ? `translateY(${brand.logoOffsetY}px)` : undefined,
+      }}
+    />
   );
 }
 
@@ -47,7 +56,7 @@ export default function TrustedBrandsCarousel({ compact = false }) {
         <div className={styles.track}>
           {track.map((brand, index) => (
             <div key={`${brand.id}-${index}`} className={styles.brand}>
-              <BrandLogo brand={brand} />
+              <BrandLogo brand={brand} compact={compact} />
             </div>
           ))}
         </div>
