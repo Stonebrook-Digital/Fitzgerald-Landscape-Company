@@ -18,6 +18,8 @@ export default function CTAIntakeForm({
   const isLight = theme === "light";
   const [form, setForm] = useState(initial);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [errors, setErrors] = useState({});
 
   const validate = () => {
@@ -28,6 +30,7 @@ export default function CTAIntakeForm({
       next.email = "Enter a valid email address";
     if (!form.phone.trim()) next.phone = "Phone number is required";
     if (!form.subject.trim()) next.subject = "Subject is required";
+    if (!form.message.trim()) next.message = "Message is required";
     return next;
   };
 
@@ -37,15 +40,44 @@ export default function CTAIntakeForm({
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: undefined }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const next = validate();
     if (Object.keys(next).length) {
       setErrors(next);
       return;
     }
-    setSubmitted(true);
-    setForm(initial);
+
+    setSubmitting(true);
+    setSubmitError("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          service: form.subject,
+          message: form.message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message.");
+      }
+
+      setSubmitted(true);
+      setForm(initial);
+    } catch (error) {
+      console.error("Contact form submission error:", error);
+      setSubmitError(error.message || "Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -143,13 +175,22 @@ export default function CTAIntakeForm({
           rows={4}
           value={form.message}
           onChange={handleChange}
+          aria-invalid={!!errors.message}
           placeholder="Tell us about your property and what you need..."
         />
+        {errors.message && (
+          <span className={styles.formError}>{errors.message}</span>
+        )}
       </div>
 
-      <button type="submit" className={styles.formSubmit}>
-        {submitLabel}
+      <button type="submit" className={styles.formSubmit} disabled={submitting}>
+        {submitting ? "Sending..." : submitLabel}
       </button>
+      {submitError && (
+        <p className={styles.formError} role="alert">
+          {submitError}
+        </p>
+      )}
     </form>
   );
 }
