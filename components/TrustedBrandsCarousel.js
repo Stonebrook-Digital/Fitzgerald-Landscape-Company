@@ -22,18 +22,20 @@ function BrandLogo({ brand, compact }) {
   );
 
   return (
-    <Image
-      src={brand.logo}
-      alt={brand.name}
-      width={240}
-      height={96}
-      className={styles.logoImg}
-      style={{
-        height: `${logoHeight}px`,
-        width: "auto",
-        transform: brand.logoOffsetY ? `translateY(${brand.logoOffsetY}px)` : undefined,
-      }}
-    />
+    <div className={styles.logoFrame} style={{ height: `${logoHeight}px` }}>
+      <Image
+        src={brand.logo}
+        alt={brand.name}
+        width={240}
+        height={96}
+        className={styles.logoImg}
+        style={{
+          height: `${logoHeight}px`,
+          width: "auto",
+          transform: brand.logoOffsetY ? `translateY(${brand.logoOffsetY}px)` : undefined,
+        }}
+      />
+    </div>
   );
 }
 
