@@ -3,6 +3,9 @@ import { NextResponse } from "next/server";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const DEFAULT_FROM = "Fitzgerald Landscape Site <hello@stonebrooknyc.com>";
+const DEFAULT_TO = "fitzgeraldlandscapeco@gmail.com";
+
 export async function POST(request) {
   try {
     const body = await request.json();
@@ -29,6 +32,9 @@ export async function POST(request) {
       );
     }
 
+    const from = process.env.CONTACT_FROM_EMAIL || DEFAULT_FROM;
+    const to = process.env.CONTACT_TO_EMAIL || DEFAULT_TO;
+
     const text = [
       `Name: ${trimmedName}`,
       `Email: ${trimmedEmail}`,
@@ -48,9 +54,9 @@ export async function POST(request) {
       <p>${escapeHtml(trimmedMessage).replace(/\n/g, "<br />")}</p>
     `;
 
-    const { error } = await resend.emails.send({
-      from: "Fitzgerald Landscape Site <noreply@stonebrooknyc.com>",
-      to: "fitzgeraldlandscapeco@gmail.com",
+    const { data, error } = await resend.emails.send({
+      from,
+      to,
       replyTo: trimmedEmail,
       subject: `New inquiry from ${trimmedName}`,
       text,
@@ -58,13 +64,14 @@ export async function POST(request) {
     });
 
     if (error) {
-      console.error("Resend error:", error);
+      console.error("Resend error:", JSON.stringify(error, null, 2));
       return NextResponse.json(
         { error: "Failed to send message. Please try again." },
         { status: 500 }
       );
     }
 
+    console.log("Contact form sent:", { id: data?.id, to, from });
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Contact form error:", error);
