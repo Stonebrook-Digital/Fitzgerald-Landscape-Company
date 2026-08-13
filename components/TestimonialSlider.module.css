@@ -4,23 +4,31 @@
 }
 
 .layout {
-  display: grid;
-  gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
   min-width: 0;
 }
 
 @media (min-width: 900px) {
   .layout {
-    grid-template-columns: minmax(240px, 300px) 1fr;
-    gap: 2rem;
-    align-items: start;
+    gap: 2.75rem;
   }
 }
 
 .summary {
+  width: 100%;
+  max-width: 420px;
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
+}
+
+@media (min-width: 900px) {
+  .summary {
+    max-width: 560px;
+  }
 }
 
 .summaryInner {
@@ -39,6 +47,13 @@
   color: var(--white);
 }
 
+@media (min-width: 900px) {
+  .summaryInner {
+    gap: 0.9rem;
+    padding: 2.75rem 3rem;
+  }
+}
+
 .summaryHeader {
   display: flex;
   align-items: center;
@@ -51,6 +66,13 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.75);
+}
+
+@media (min-width: 900px) {
+  .summaryLabel {
+    font-size: 0.85rem;
+    letter-spacing: 0.16em;
+  }
 }
 
 .summaryRating {
@@ -70,6 +92,12 @@
   color: var(--gold-light);
 }
 
+@media (min-width: 900px) {
+  .summaryScore {
+    font-size: clamp(3.25rem, 4vw, 3.75rem);
+  }
+}
+
 .summaryOutOf {
   font-size: 0.82rem;
   color: rgba(255, 255, 255, 0.55);
@@ -80,6 +108,12 @@
 .summaryCount {
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.7);
+}
+
+@media (min-width: 900px) {
+  .summaryCount {
+    font-size: 1rem;
+  }
 }
 
 .summaryNote {
@@ -95,12 +129,20 @@
   color: rgba(255, 255, 255, 0.72);
 }
 
+@media (min-width: 900px) {
+  .summaryNote {
+    font-size: 1.05rem;
+    letter-spacing: 0.06em;
+  }
+}
+
 .reviewsColumn {
   display: flex;
   flex-direction: column;
   align-items: center;
   min-width: 0;
   width: 100%;
+  max-width: 760px;
 }
 
 .carousel {
